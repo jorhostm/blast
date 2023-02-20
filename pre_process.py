@@ -19,7 +19,7 @@ queue_script = open("queue_all.sh","w")
 queue_script.writelines(["#!/bin/bash\n"])
 
 clean_script = open("clean.sh","w")
-clean_script.writelines(["#!/bin/bash\n","rm -f *.out *.msg *.abq *.cid *.com *.dat *.mdl *.pac *.par *.pes *.pmg *.prt *.res *.sel *.sta *.stt\n", "rm -f"])
+clean_script.writelines(["#!/bin/bash\n","rm -f *.out *.msg *.abq *.cid *.com *.dat *.mdl *.pac *.par *.pes *.pmg *.prt *.res *.sel *.sta *.stt *.src *.exception"])
 
 post_script = open("post_all.sh","w")
 post_script.writelines(["#!/bin/bash\n"])

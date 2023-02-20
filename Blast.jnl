@@ -1525,3 +1525,27 @@ mdb.models['1-22p5'].rootAssembly.regenerate()
 mdb.models['1-HV'].rootAssembly.regenerate()
 mdb.models['4-45'].rootAssembly.regenerate()
 # Save by jorge on 2023_02_17-15.27.20; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+del mdb.jobs['4-45_1p5']
+del mdb.jobs['4-45_3p0']
+mdb.Job(name='4-45_3p0', objectToCopy=mdb.jobs['1-HV_3p0'])
+mdb.jobs['4-45_3p0'].setValues(model='4-45')
+mdb.models['4-45'].parts['Plate'].deleteMesh()
+mdb.models['4-45'].parts['Plate'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=1.5)
+mdb.models['4-45'].parts['Plate'].generateMesh()
+mdb.models['4-45'].rootAssembly.regenerate()
+mdb.Job(name='4-45_1p5', objectToCopy=mdb.jobs['4-45_3p0'])
+# Save by jorge on 2023_02_20-14.45.53; build 2022 2021_09_15-19.57.30 176069
