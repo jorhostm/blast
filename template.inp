@@ -1,0 +1,5 @@
+*Parameter
+MAT  = '{mat}'
+AMP = '{amp}'
+*include,input=mat_6016_TTR.inp
+*include,input={model}.inp

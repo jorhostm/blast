@@ -1,0 +1,61 @@
+*Material, name=SMM_AA6016_T6
+*DENSITY
+2.7e-09
+*ELASTIC
+70000.0,0.3
+*Plastic, hardening=USER, properties=7
+** sigma0, THETA0R1,  Q0R1, THETA0R2,  Q0R2, THETA0R3,   Q0R3
+   238.25,   6033.0, 11.18,  1144.48, 46.32,   329.85, 398.37
+*Depvar, delete=6
+6,
+1,PEEQ,"equivalent plastic strain"
+2,DAMAGE,"Damage Cockcroft-Latham"
+3,leote,"Element aspect ratio"
+4,omega,"Element deformation mode"
+5,N,"Element normal"
+6,FAIL,"Failure status"
+*User Defined Field, properties=8
+** dcrit,     WcB,    WcS,   WcL,      c, phi, gamma, THICK
+     1.0,  230.12, 167.25, 75.64, 0.4226, 1.0,   1.0,   1.5
+******************************************************************
+******************************************************************
+*Material, name=SMM_AA6016_T4
+*DENSITY
+2.7e-09
+*ELASTIC
+70000.0,0.3
+*Plastic, hardening=USER, properties=7
+** sigma0, THETA0R1,  Q0R1, THETA0R2,   Q0R2, THETA0R3,   Q0R3
+   112.46,  2579.60, 78.64,   542.06, 109.80,   163.57, 325.69
+*Depvar, delete=6
+6,
+1,PEEQ,"equivalent plastic strain"
+2,DAMAGE,"Damage Cockcroft-Latham"
+3,leote,"Element aspect ratio"
+4,omega,"Element deformation mode"
+5,N,"Element normal"
+6,FAIL,"Failure status"
+*User Defined Field, properties=8
+** dcrit,     WcB,    WcS,   WcL,      c, phi, gamma, THICK
+     1.0,  245.22, 173.15, 91.07, 0.4968, 1.0,   1.0,   1.5
+******************************************************************
+******************************************************************
+*Material, name=SMM_AA6016_T7
+*DENSITY
+2.7e-09
+*ELASTIC
+70000.0,0.3
+*Plastic, hardening=USER, properties=7
+** sigma0, THETA0R1,  Q0R1, THETA0R2,  Q0R2, THETA0R3,   Q0R3
+    149.2, 11716.21,  5.89,  2293.59, 47.32,   224.95,  60.36
+*Depvar, delete=6
+6,
+1,PEEQ,"equivalent plastic strain"
+2,DAMAGE,"Damage Cockcroft-Latham"
+3,leote,"Element aspect ratio"
+4,omega,"Element deformation mode"
+5,N,"Element normal"
+6,FAIL,"Failure status"
+*User Defined Field, properties=8
+** dcrit,     WcB,    WcS,   WcL,      c, phi, gamma, THICK
+     1.0,  366.01, 104.13, 38.72, 0.6646, 1.0,   1.0,   1.5
