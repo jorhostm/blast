@@ -43,6 +43,6 @@ for filename in glob.iglob('*.inp'):
             print(f"Generating job {jobname}...")
             queue_script.writelines([f"sbatch ../jobaba {jobname}\n"])
             clean_script.writelines([f" {jobname}"])
-            post_script.writelines([f"abaqus python post_plate.py {model}_{matk}_{ampk} {ampv.upper()}\n"])
+            post_script.writelines([f"abaqus python post_plate.py {model}_{matk}_{ampk} {ampv.upper()} &>/dev/null &\n"])
             with open(jobname,'w') as f:
                f.write(template.format(mat=matv, amp=ampv, model=model))

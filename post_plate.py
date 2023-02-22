@@ -35,27 +35,42 @@ def post_plate(filename,pressure_curve):
     #-------------------------------------------------------------------------------
     # Extract local pressure and normal for the element
     #-------------------------------------------------------------------------------
-    for i,frame in enumerate(step.frames):
+
+ #   Read the pressure field
+    i = 0
+    frame = step.frames[i]
+    field  = frame.fieldOutputs['P']
+    P = read_bulk_data(field)
+    labels_P = read_bulk_labels(field)
+#   Read the normal field
+    field  = frame.fieldOutputs['SDV_N']
+    N = read_bulk_data(field)
+    labels_N = read_bulk_labels(field)
+
+    nframe = np.shape(step.frames)[0]
+    nelt   = np.shape(P)[0]
+    Pel = np.zeros([nframe,nelt])
+    Nel = np.zeros([nframe,nelt])
+    time_field = np.zeros([nframe])
+    Nel[i,:] = np.ones([nelt])
+
+    labels_N_inv = np.zeros(nelt*2+1, dtype=np.int32)
+    labels_N_inv[labels_N] = np.arange(0,len(labels_N))
+    labels_P_inv = np.zeros(nelt+1, dtype=np.int32)
+    labels_P_inv[labels_P] = np.arange(0,len(labels_P))
+
+    iter_frames = iter(step.frames)
+    next(iter_frames)
+    for i,frame in enumerate(iter_frames, start=1):
 #       Read the pressure field 
         field  = frame.fieldOutputs['P']
         P = read_bulk_data(field)
-        labels_P = read_bulk_labels(field)
 #       Read the normal field
         field  = frame.fieldOutputs['SDV_N']
         N = read_bulk_data(field)
-        labels = read_bulk_labels(field)
 #       prepare arrays and store data
-        if i == 0:
-           nframe = np.shape(step.frames)[0]
-           nelt   = np.shape(P)[0]
-           Pel = np.zeros([nframe,nelt])
-           Nel = np.zeros([nframe,nelt])
-           time_field = np.zeros([nframe])
-           Nel[i,:] = np.ones([nelt])
-        else:
-           Pel[i,:] = P[:,0]
-           for j in range(0,len(P)):
-               Nel[i,j] = N[np.where(labels == labels_P[j])[0][0],0]
+        Pel[i,:] = P[:,0]
+        Nel[i,labels_P_inv[1:]] = N[labels_N[1:nelt+1],0]
 #       Get the time of field
         time_field[i] = frame.frameValue
 #   Interpolate overall pressure
@@ -66,7 +81,7 @@ def post_plate(filename,pressure_curve):
     #np.savetxt(filename+'_P.csv',Pel,delimiter=',')
     #np.savetxt(filename+'_N.csv',Nel,delimiter=',')
     #np.savetxt(filename+'_PLAG.csv',np.transpose([time_field,P_lag]),delimiter=',')
-    np.savez_compressed(filename, P=Pel, N=Nel, PLAG=np.transpose([time_field,P_lag]), labels=labels, NN=N)
+    np.savez_compressed(filename, P=Pel, N=Nel, PLAG=np.transpose([time_field,P_lag]), labels=labels_P)
     #-------------------------------------------------------------------------------
     # Close odb file
     #-------------------------------------------------------------------------------
@@ -82,7 +97,6 @@ pressure_curve = 'DRIVER15BAR'
 if len(sys.argv) > 2:
     pressure_curve = sys.argv[2]
 
-print("Processing file: ", filename, ". Pressure curve: ", pressure_curve)
 post_plate(filename,pressure_curve)
 exit()
 ####################################################################################
