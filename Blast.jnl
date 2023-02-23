@@ -1549,3 +1549,167 @@ mdb.models['4-45'].parts['Plate'].generateMesh()
 mdb.models['4-45'].rootAssembly.regenerate()
 mdb.Job(name='4-45_1p5', objectToCopy=mdb.jobs['4-45_3p0'])
 # Save by jorge on 2023_02_20-14.45.53; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['4-45'].parts['Plate'].deleteMesh()
+mdb.models['4-45'].parts['Plate'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=3.0)
+mdb.models['4-45'].parts['Plate'].generateMesh()
+mdb.models['1-22p5'].parts['Plate'].features['Partition face-2'].suppress()
+mdb.models['1-22p5'].parts['Plate'].features['Partition face-2'].resume()
+mdb.models['1-22p5'].parts['Plate'].generateMesh()
+mdb.models['1-HV'].parts['Plate'].suppressFeatures(('Partition face-4', 
+    'Partition face-3', 'Partition face-2', 'Partition face-1'))
+mdb.models['1-HV'].parts['Plate'].resumeFeatures(('Partition face-1', 
+    'Partition face-2', 'Partition face-3', 'Partition face-4'))
+mdb.models['1-HV'].parts['Plate'].generateMesh()
+mdb.models['1-HV'].parts['Plate'].deleteMesh()
+mdb.models['1-HV'].parts['Plate'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=1.0)
+mdb.models['1-HV'].parts['Plate'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=3.0)
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].parts['Plate'].deleteFeatures(('Partition face-1', 
+    'Partition face-2', 'Partition face-3', 'Partition face-4'))
+mdb.models['1-HV'].ConstrainedSketch(gridSpacing=21.21, name='__profile__', 
+    sheetSize=848.52, transform=
+    mdb.models['1-HV'].parts['Plate'].MakeSketchTransform(
+    sketchPlane=mdb.models['1-HV'].parts['Plate'].faces[0], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['1-HV'].parts['Plate'].edges[11], 
+    sketchOrientation=RIGHT, origin=(0.0, 0.0, 0.0)))
+mdb.models['1-HV'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-HV'].sketches['__profile__'])
+mdb.models['1-HV'].sketches['__profile__'].Line(point1=(0.0, 30.0), point2=(
+    0.0, 150.0))
+mdb.models['1-HV'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-HV'].sketches['__profile__'].geometry[14])
+mdb.models['1-HV'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-HV'].sketches['__profile__'].vertices[12], 
+    entity2=mdb.models['1-HV'].sketches['__profile__'].geometry[10])
+mdb.models['1-HV'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[8], entity2=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[9], midpoint=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[12])
+mdb.models['1-HV'].sketches['__profile__'].Line(point1=(30.0, 0.0), point2=(
+    150.0, 0.0))
+mdb.models['1-HV'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-HV'].sketches['__profile__'].geometry[15])
+mdb.models['1-HV'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-HV'].sketches['__profile__'].vertices[13], 
+    entity2=mdb.models['1-HV'].sketches['__profile__'].geometry[13])
+mdb.models['1-HV'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[11], entity2=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[8], midpoint=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[13])
+mdb.models['1-HV'].sketches['__profile__'].Line(point1=(-30.0, 0.0), point2=(
+    -150.0, 0.0))
+mdb.models['1-HV'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-HV'].sketches['__profile__'].geometry[16])
+mdb.models['1-HV'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-HV'].sketches['__profile__'].vertices[14], 
+    entity2=mdb.models['1-HV'].sketches['__profile__'].geometry[11])
+mdb.models['1-HV'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[9], entity2=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[10], midpoint=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[14])
+mdb.models['1-HV'].sketches['__profile__'].Line(point1=(0.0, -30.0), point2=(
+    0.0, -150.0))
+mdb.models['1-HV'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-HV'].sketches['__profile__'].geometry[17])
+mdb.models['1-HV'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-HV'].sketches['__profile__'].vertices[15], 
+    entity2=mdb.models['1-HV'].sketches['__profile__'].geometry[12])
+mdb.models['1-HV'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[10], entity2=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[11], midpoint=
+    mdb.models['1-HV'].sketches['__profile__'].vertices[15])
+mdb.models['1-HV'].parts['Plate'].PartitionFaceBySketch(faces=
+    mdb.models['1-HV'].parts['Plate'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    sketch=mdb.models['1-HV'].sketches['__profile__'], sketchUpEdge=
+    mdb.models['1-HV'].parts['Plate'].edges[11])
+del mdb.models['1-HV'].sketches['__profile__']
+mdb.models['1-HV'].parts['Plate'].setMeshControls(regions=
+    mdb.models['1-HV'].parts['Plate'].faces.getSequenceFromMask(('[#f ]', ), ), 
+    technique=STRUCTURED)
+mdb.models['1-HV'].parts['Plate'].generateMesh()
+# Save by jorge on 2023_02_23-11.29.11; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].parts['Plate'].features['Partition face-1'].suppress()
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].parts['Plate'].features['Partition face-1'].resume()
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].parts['Plate'].features['Partition face-1'].suppress()
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].rootAssembly.Set(edges=
+    mdb.models['1-HV'].rootAssembly.instances['Plate-1'].edges.getSequenceFromMask(
+    ('[#f00 ]', ), ), name='ShellBoundary')
+# Save by jorge on 2023_02_23-11.30.29; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-HV'].parts['Plate'].generateMesh()
+mdb.models['1-HV'].parts['Plate'].features['Partition face-1'].resume()
+mdb.models['1-HV'].parts['Plate'].generateMesh()
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].boundaryConditions['FixedEnd'].resume()
+mdb.models['1-HV'].parts['Plate'].features['Partition face-1'].suppress()
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].loads['Pressure'].suppress()
+mdb.models['1-HV'].loads['Pressure'].resume()
+mdb.models['1-HV'].loads['Pressure'].suppress()
+mdb.models['1-HV'].loads['Pressure'].resume()
+mdb.models['1-HV'].loads['Pressure'].suppress()
+mdb.models['1-HV'].loads['Pressure'].resume()
+mdb.models['1-HV'].loads['Pressure'].suppress()
+mdb.models['1-HV'].boundaryConditions['FixedEnd'].suppress()
+mdb.models['1-HV'].loads['Pressure'].resume()
+mdb.models['1-HV'].loads['Pressure'].suppress()
+mdb.models['1-HV'].boundaryConditions['FixedEnd'].resume()
+mdb.models['1-HV'].loads['Pressure'].resume()
+mdb.models['1-HV'].parts['Plate'].features['Partition face-1'].resume()
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['1-HV'].rootAssembly.Set(edges=
+    mdb.models['1-HV'].rootAssembly.instances['Plate-1'].edges.getSequenceFromMask(
+    ('[#3c630 ]', ), ), name='ShellBoundary')
+mdb.models['1-HV'].parts['Plate'].generateMesh()
+# Save by jorge on 2023_02_23-11.42.31; build 2022 2021_09_15-19.57.30 176069
+# Save by jorge on 2023_02_23-11.55.35; build 2022 2021_09_15-19.57.30 176069
