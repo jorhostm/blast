@@ -70,7 +70,7 @@ def post_plate(filename,pressure_curve):
         N = read_bulk_data(field)
 #       prepare arrays and store data
         Pel[i,:] = P[:,0]
-        Nel[i,labels_P_inv[1:]] = N[labels_N[1:nelt+1],0]
+        Nel[i,labels_P_inv[1:]] = N[labels_N_inv[1:nelt+1],0]
 #       Get the time of field
         time_field[i] = frame.frameValue
 #   Interpolate overall pressure
