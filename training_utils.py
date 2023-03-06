@@ -2,9 +2,7 @@ import glob
 
 import numpy as np
 from tensorflow import keras
-import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 
 from sklearn.preprocessing import normalize
 from sklearn.model_selection import train_test_split
@@ -22,7 +20,7 @@ def make_model(num_layers=1, num_neurons=8, act="tanh", opt="Nadam", loss="mse",
     model.compile(optimizer=opt, loss=loss)
     return model
 
-def prepare_dataset(lagp, n, p, test_size=0.15):
+def prepare_dataset(lagp, n, p, test_size=0.15, split=True):
     if isinstance(lagp, list):
         assert len(lagp) == len(n) and len(lagp) == len(p)
         plags = list()
@@ -54,35 +52,24 @@ def prepare_dataset(lagp, n, p, test_size=0.15):
     X = np.transpose([lagp_train, n_train])
     Y = np.transpose([p_train])
 
-    X,X_norms = normalize(X, axis=0, norm='max', return_norm=True, copy=False)
-    Y,Y_norms = normalize(Y, axis=0, norm='max', return_norm=True, copy=False)
+    if split:
+        X = np.transpose([lagp_train, n_train])
+        Y = np.transpose([p_train])
 
-    x_train,x_val, y_train, y_val = train_test_split(X, Y, test_size=test_size)
+        X,X_norms = normalize(X, axis=0, norm='max', return_norm=True, copy=False)
+        Y,Y_norms = normalize(Y, axis=0, norm='max', return_norm=True, copy=False)
 
-    return x_train,x_val, y_train, y_val, X_norms, Y_norms
-"""
-def load_datasets():
-    # Load all the data
-    dataset = dict()
-    for job in glob.iglob('*.npz'):
-        jobname = job.split('.')[0]
-        db = np.load(job)
-        keys = jobname.split('_')
-        dic = dataset
-        for i in range(len(keys)-1):
-            dic_next = dic.get(keys[i])
-            if not dic_next:
-                dic_next = dict()
-                dic[keys[i]] = dic_next
-            dic = dic_next
-        dic[keys[-1]] = db
+        x_train,x_val, y_train, y_val = train_test_split(X, Y, test_size=test_size)
 
-    return dataset
-"""
+        return x_train,x_val, y_train, y_val, X_norms, Y_norms
+    
+    else:
+        return lagp_train, n_train, p_train
+
 def load_datasets(folder="datasets"):
     dataset = dict()
     for job in glob.iglob(f"{folder}/*.npz"):
-        jobname = job.split('/')[1].split('.')[0]
+        jobname = job.split('/')[-1].split('.')[0]
         db = np.load(job)
         dataset[jobname] = db
 
@@ -101,7 +88,7 @@ def evaluate_model(model, dataset, X_norms, Y_norms):
         X[:,0] *= x_norms[0]/X_norms[0]
         X[:,1] *= x_norms[1]/X_norms[1]
         Y[:,0] *= y_norms[0]/Y_norms[0]
-        results = model.evaluate(X,Y, batch_size=Y.shape[0])
+        results = model.evaluate(X,Y, batch_size=Y.shape[0], verbose=0)
         mse.append(results)
         plate.append(paras[0])
         size.append(paras[1])
@@ -112,5 +99,6 @@ def evaluate_model(model, dataset, X_norms, Y_norms):
     df["Plate"] = plate
     df["Mesh size"] = size
     df["Material_Amplitude"] = mat
+    df["Job"] = dataset.keys()
     
     return df
