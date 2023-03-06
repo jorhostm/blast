@@ -50,14 +50,16 @@ def post_plate(filename,pressure_curve):
     nframe = np.shape(step.frames)[0]
     nelt   = np.shape(P)[0]
     Pel = np.zeros([nframe,nelt])
-    Nel = np.zeros([nframe,nelt])
+    Nel = np.ones([nframe,nelt])
     time_field = np.zeros([nframe])
-    Nel[i,:] = np.ones([nelt])
 
-    labels_N_inv = np.zeros(nelt*2+1, dtype=np.int32)
+    labels_N_inv = np.zeros(nelt+1, dtype=np.int32)
     labels_N_inv[labels_N] = np.arange(0,len(labels_N))
     labels_P_inv = np.zeros(nelt+1, dtype=np.int32)
     labels_P_inv[labels_P] = np.arange(0,len(labels_P))
+
+    indices = np.zeros(nelt, dtype=np.int32)
+    indices[labels_P_inv[1:]] = labels_N_inv[1:]
 
     iter_frames = iter(step.frames)
     next(iter_frames)
@@ -70,7 +72,8 @@ def post_plate(filename,pressure_curve):
         N = read_bulk_data(field)
 #       prepare arrays and store data
         Pel[i,:] = P[:,0]
-        Nel[i,labels_P_inv[1:]] = N[labels_N_inv[1:nelt+1],0]
+        #Nel[i,labels_P_inv[1:]] = N[labels_N_inv[1:],0]
+        Nel[i,:] = N[indices,0]
 #       Get the time of field
         time_field[i] = frame.frameValue
 #   Interpolate overall pressure
