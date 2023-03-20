@@ -49,9 +49,6 @@ def prepare_dataset(lagp, n, p, test_size=0.15, split=True):
         p_train = p.flatten()
         n_train = n.flatten()
 
-    X = np.transpose([lagp_train, n_train])
-    Y = np.transpose([p_train])
-
     if split:
         X = np.transpose([lagp_train, n_train])
         Y = np.transpose([p_train])
