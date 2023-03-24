@@ -79,12 +79,12 @@ def evaluate_model(model, dataset, X_norms, Y_norms):
     mat = list()
     for jobname, db in dataset.items():
         paras = jobname.split('_')
-        x_train,x_val, y_train, y_val, x_norms, y_norms = prepare_dataset(lagp=db["PLAG"], n=db["N"], p=db["P"])
-        X = np.concatenate([x_train,x_val])
-        Y = np.concatenate([y_train,y_val])
-        X[:,0] *= x_norms[0]/X_norms[0]
-        X[:,1] *= x_norms[1]/X_norms[1]
-        Y[:,0] *= y_norms[0]/Y_norms[0]
+        plag,n, p = prepare_dataset(lagp=db["PLAG"][:-1], n=db["N"][:-1], p=db["P"][:-1], split=False)
+        plag /= X_norms[0]
+        n /= X_norms[1]
+        p /= Y_norms[0]
+        X = np.transpose([plag,n])
+        Y = np.transpose([p])
         results = model.evaluate(X,Y, batch_size=Y.shape[0], verbose=0)
         mse.append(results)
         plate.append(paras[0])
