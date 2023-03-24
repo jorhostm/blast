@@ -1713,3 +1713,263 @@ mdb.models['1-HV'].rootAssembly.Set(edges=
 mdb.models['1-HV'].parts['Plate'].generateMesh()
 # Save by jorge on 2023_02_23-11.42.31; build 2022 2021_09_15-19.57.30 176069
 # Save by jorge on 2023_02_23-11.55.35; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-22p5'].rootAssembly.regenerate()
+mdb.Model(name='rect', objectToCopy=mdb.models['1-HV'])
+mdb.models['rect'].Part(name='Plate-Copy', objectToCopy=
+    mdb.models['rect'].parts['Plate'])
+del mdb.models['rect'].parts['Plate-Copy'].features['Partition face-1']
+del mdb.models['rect'].parts['Plate-Copy']
+del mdb.models['rect'].parts['Plate'].features['Partition face-1']
+mdb.models['rect'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['rect'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['rect'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['rect'].sketches['__edit__'], 
+    upToFeature=mdb.models['rect'].parts['Plate'].features['Shell planar-1'])
+mdb.models['rect'].sketches['__edit__'].delete(objectList=(
+    mdb.models['rect'].sketches['__edit__'].geometry[20], 
+    mdb.models['rect'].sketches['__edit__'].geometry[21], 
+    mdb.models['rect'].sketches['__edit__'].geometry[22], 
+    mdb.models['rect'].sketches['__edit__'].geometry[23], 
+    mdb.models['rect'].sketches['__edit__'].geometry[24], 
+    mdb.models['rect'].sketches['__edit__'].geometry[25], 
+    mdb.models['rect'].sketches['__edit__'].geometry[26], 
+    mdb.models['rect'].sketches['__edit__'].geometry[27], 
+    mdb.models['rect'].sketches['__edit__'].geometry[28], 
+    mdb.models['rect'].sketches['__edit__'].geometry[29], 
+    mdb.models['rect'].sketches['__edit__'].geometry[30], 
+    mdb.models['rect'].sketches['__edit__'].geometry[31], 
+    mdb.models['rect'].sketches['__edit__'].geometry[32], 
+    mdb.models['rect'].sketches['__edit__'].geometry[33], 
+    mdb.models['rect'].sketches['__edit__'].vertices[21], 
+    mdb.models['rect'].sketches['__edit__'].vertices[26], 
+    mdb.models['rect'].sketches['__edit__'].vertices[27], 
+    mdb.models['rect'].sketches['__edit__'].vertices[28], 
+    mdb.models['rect'].sketches['__edit__'].vertices[29], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[8], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[9], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[10], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[11], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[12], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[13], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[14], 
+    mdb.models['rect'].sketches['__edit__'].dimensions[15], 
+    mdb.models['rect'].sketches['__edit__'].constraints[69], 
+    mdb.models['rect'].sketches['__edit__'].constraints[70], 
+    mdb.models['rect'].sketches['__edit__'].constraints[71], 
+    mdb.models['rect'].sketches['__edit__'].constraints[72], 
+    mdb.models['rect'].sketches['__edit__'].constraints[73], 
+    mdb.models['rect'].sketches['__edit__'].constraints[74], 
+    mdb.models['rect'].sketches['__edit__'].constraints[91], 
+    mdb.models['rect'].sketches['__edit__'].constraints[92], 
+    mdb.models['rect'].sketches['__edit__'].constraints[93], 
+    mdb.models['rect'].sketches['__edit__'].constraints[94], 
+    mdb.models['rect'].sketches['__edit__'].constraints[95], 
+    mdb.models['rect'].sketches['__edit__'].constraints[96], 
+    mdb.models['rect'].sketches['__edit__'].constraints[97], 
+    mdb.models['rect'].sketches['__edit__'].constraints[98], 
+    mdb.models['rect'].sketches['__edit__'].constraints[99], 
+    mdb.models['rect'].sketches['__edit__'].constraints[100], 
+    mdb.models['rect'].sketches['__edit__'].constraints[103], 
+    mdb.models['rect'].sketches['__edit__'].constraints[106], 
+    mdb.models['rect'].sketches['__edit__'].constraints[109], 
+    mdb.models['rect'].sketches['__edit__'].constraints[112], 
+    mdb.models['rect'].sketches['__edit__'].constraints[115], 
+    mdb.models['rect'].sketches['__edit__'].constraints[118], 
+    mdb.models['rect'].sketches['__edit__'].constraints[121]))
+mdb.models['rect'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    13.7265167236328, -166.034606933594), value=75.0, vertex1=
+    mdb.models['rect'].sketches['__edit__'].vertices[1], vertex2=
+    mdb.models['rect'].sketches['__edit__'].vertices[2])
+mdb.models['rect'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    92.7733154296875, 66.1239547729492), value=300.0, vertex1=
+    mdb.models['rect'].sketches['__edit__'].vertices[0], vertex2=
+    mdb.models['rect'].sketches['__edit__'].vertices[1])
+mdb.models['rect'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['rect'].sketches['__edit__'].geometry[2], points=((-75.0, 
+    8.00629806518555), (-76.25, 7.5), (-70.0, 7.5), (-66.25, 7.5), (-62.5, 
+    7.5), (-58.75, 7.5), (-55.0, 6.25), (-51.25, 6.25), (-47.5, 6.25), (-43.75, 
+    6.25), (-40.0, 6.25), (-35.0, 6.25), (-32.5, 6.25), (-27.5, 6.25), (-23.75, 
+    6.25), (-20.0, 5.0), (-16.25, 5.0), (-12.5, 5.0), (-8.75, 5.0), (-5.0, 
+    5.0), (-1.25, 3.75), (3.75, 3.75), (7.5, 3.75), (11.25, 3.75), (15.0, 
+    3.75), (18.75, 2.5), (22.5, 2.5), (26.25, 3.75), (30.0, 3.75), (33.75, 
+    3.75), (37.5, 5.0), (41.25, 5.0), (45.0, 5.0), (48.75, 5.0), (52.5, 5.0), (
+    56.25, 5.0), (60.0, 5.0), (63.75, 3.75), (67.5, 5.0), (71.25, 5.0), (73.75, 
+    6.25), (75.0, 6.25)))
+mdb.models['rect'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['rect'].sketches['__edit__'].geometry[4], points=((0.0, 
+    -29.5164794921875), (1.25, -30.0), (-5.0, -31.25), (-8.75, -31.25), (-12.5, 
+    -31.25), (-16.25, -31.25), (-20.0, -31.25), (-25.0, -31.25), (-28.75, 
+    -31.25), (-32.5, -31.25), (-36.25, -31.25), (-40.0, -32.5), (-36.25, 
+    -32.5), (-33.75, -31.25)))
+mdb.models['rect'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['rect'].sketches['__edit__'].geometry[4], points=((-33.75, 
+    2.30771064758301), (-32.5, 2.5), (-35.0, 2.5)))
+mdb.models['rect'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['rect'].sketches['__edit__'].geometry[2], points=((40.0, 
+    47.7711219787598), (40.0, 47.5), (37.5, 47.5), (37.5, 47.5)))
+mdb.models['rect'].parts['Plate'].features['Shell planar-1'].setValues(sketch=
+    mdb.models['rect'].sketches['__edit__'])
+del mdb.models['rect'].sketches['__edit__']
+mdb.models['rect'].parts['Plate'].regenerate()
+mdb.models['rect'].parts['Plate'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=1.5)
+mdb.models['rect'].parts['Plate'].generateMesh()
+mdb.models['rect'].parts['Plate'].deleteMesh(regions=
+    mdb.models['rect'].parts['Plate'].faces.getSequenceFromMask(('[#1 ]', ), ))
+mdb.models['rect'].parts['Plate'].setMeshControls(regions=
+    mdb.models['rect'].parts['Plate'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    technique=STRUCTURED)
+mdb.models['rect'].parts['Plate'].generateMesh()
+mdb.models['rect'].rootAssembly.regenerate()
+del mdb.models['rect'].sketches['Slit225_Shell']
+del mdb.models['rect'].sketches['Slit225']
+del mdb.models['4-HV'].sketches['Slit225']
+del mdb.models['4-HV'].sketches['Slit225_Shell']
+del mdb.models['1-22p5'].sketches['Slit225']
+del mdb.models['1-22p5'].sketches['Slit225_Shell']
+del mdb.models['1-HV'].sketches['Slit225']
+del mdb.models['1-HV'].sketches['Slit225_Shell']
+del mdb.models['4-45'].sketches['Slit225']
+del mdb.models['4-45'].sketches['Slit225_Shell']
+# Save by jorge on 2023_03_24-14.42.38; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-HV'].rootAssembly.regenerate()
+mdb.models['rect'].rootAssembly.Set(edges=
+    mdb.models['rect'].rootAssembly.instances['Plate-1'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), name='ShellBoundary')
+# Save by jorge on 2023_03_24-14.48.15; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=DOUBLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='rect', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='rect_1p5', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numDomains=1, numThreadsPerMpiProcess=1, 
+    parallelizationMethodExplicit=DOMAIN, queue=None, resultsFormat=ODB, 
+    scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by jorge on 2023_03_24-14.49.51; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['4-45'].rootAssembly.regenerate()
+mdb.models['4-45'].rootAssembly.regenerate()
+# Save by jorge on 2023_03_24-14.50.50; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['rect'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['4-HV'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['4-45'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['1-HV'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['1-22p5'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+# Save by jorge on 2023_03_24-15.48.09; build 2022 2021_09_15-19.57.30 176069
+# Save by jorge on 2023_03_24-15.50.20; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-22p5'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.02)
+mdb.models['1-HV'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.02)
+mdb.models['4-45'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.02)
+mdb.models['4-HV'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.02)
+mdb.models['rect'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.02)
+# Save by jorge on 2023_03_24-16.38.23; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-22p5'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['1-HV'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['4-45'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['4-HV'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+mdb.models['rect'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.002)
+# Save by jorge on 2023_03_24-17.10.48; build 2022 2021_09_15-19.57.30 176069
