@@ -5,10 +5,10 @@ from tensorflow import keras
 from training_utils import *
 keras.utils.set_random_seed(69)
 
-dataset = load_datasets()
+dataset = load_datasets("..")
 
-jobs = ['1-HV_1p5_T7_15' ,'1-HV_1p5_T7_10' ,'4-45_1p5_T7_15']
-#jobs = dataset.keys()
+#jobs = ['1-HV_1p5_T7_15' ,'1-HV_1p5_T7_10' ,'4-45_1p5_T7_15']
+jobs = dataset.keys()
 #jobs = ["1-22p5_1p5_T6_15", "4-HV_1p5_T7_15", "4-HV_1p5_T7_10"]
 #jobs = ["1-22p5_1p5_T6_15", "4-HV_1p5_T7_15"]
 plags = [dataset[job]["PLAG"] for job in jobs]
@@ -32,7 +32,7 @@ para = {"model":model, "history":history.history, "X_norms":X_norms, "Y_norms":Y
 
 with gzip.open("para.pkl.gz","r+b") as f:
         dic = pickle.load(f)
-        dic["para5"] = para
+        dic["para6"] = para
 
 with gzip.open("para.pkl.gz","w+b") as f:
         pickle.dump(dic, f)
