@@ -1,5 +1,6 @@
 *Parameter
 MAT  = '{mat}'
 AMP = '{amp}'
+LOADSURFACE = '{loadsurface}'
 *include,input=mat_6016_TTR.inp
 *include,input={model}.inp

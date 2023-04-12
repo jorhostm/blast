@@ -11,6 +11,7 @@ def parameterize(filenames):
          for line in fileinput.input(file, inplace=1):
             line = line.replace("material=AA6016_T4", "material=<MAT>")
             line = line.replace("*Dsload\n", "*Dsload, amplitude=<AMP>\n")
+            line = line.replace("LoadSurface", "<LOADSURFACE>")
             sys.stdout.write(line)
       else:
          print(f"Ignoring file {file} as it doesn't start with '*Heading'.")
@@ -21,6 +22,8 @@ if __name__ == "__main__":
    files = set()
    amps = set()
    mats = set()
+   loadsurface = "fsi"
+   ann_model = "model.ann"
 
    if len(sys.argv) > 1:
       arg = sys.argv[1]
@@ -53,9 +56,19 @@ if __name__ == "__main__":
                amps.add(str(val))
             elif opt == "amps":
                amps.update([str(v) for v in eval(val)])
+            elif opt == "loadsurface":
+               val = str(val).lower()
+               assert val == "fsi" or val == "ann"
+               loadsurface = val
+            elif opt == "model":
+               val = str(val)
+               assert val.endswith(".ann")
+               ann_model = val
+
 
    materials = {"T6":"SMM_AA6016_T6", "T4":"SMM_AA6016_T4", "T7":"SMM_AA6016_T7"}
    amplitudes = {"10": "Driver10Bar","15": "Driver15Bar"}
+   loadsurfaces = {"fsi": "FSISurface", "ann": "ANNSurface"}
 
    if len(files) == 0:
       files = list(glob.iglob('*.inp'))
@@ -72,6 +85,9 @@ if __name__ == "__main__":
       print("Creating jobfiles.")
       print("Materials:", mats)
       print("Amplitudes:", amps)
+      print("LoadSurface:", loadsurface)
+      if loadsurface == "ann":
+         print("ANN model:", ann_model)
       with open("template.inp","r") as f:
          template = f.read()
 
@@ -96,11 +112,15 @@ if __name__ == "__main__":
                   ampv = amplitudes[ampk]
                   jobname = f"{model}_{matk}_{ampk}.inp"
                   print(f"Generating job {jobname}...")
+                  if loadsurface == "ann":
+                     queue_script.writelines([f"cp {ann_model} {model}_{matk}_{ampk}.ann\n"])
                   queue_script.writelines([f"sbatch ../jobaba {jobname}\n"])
                   clean_script.writelines([f" {jobname}"])
+                  if loadsurface == "ann":
+                     clean_script.writelines([f" {model}_{matk}_{ampk}.ann"])
                   post_script.writelines([f"abaqus python post_plate.py {model}_{matk}_{ampk} {ampv.upper()} &>/dev/null &\n"])
                   with open(jobname,'w') as f:
-                     f.write(template.format(mat=matv, amp=ampv, model=model))
+                     f.write(template.format(mat=matv, amp=ampv, model=model, loadsurface=loadsurfaces[loadsurface]))
 
       queue_script.close()
       clean_script.close()
