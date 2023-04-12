@@ -51,15 +51,20 @@ def post_plate(filename,pressure_curve):
     nelt   = np.shape(P)[0]
     Pel = np.zeros([nframe,nelt])
     Nel = np.ones([nframe,nelt])
+    Del = np.zeros([nframe,nelt,2])
     time_field = np.zeros([nframe])
 
     labels_N_inv = np.zeros(nelt+1, dtype=np.int32)
     labels_N_inv[labels_N] = np.arange(0,len(labels_N))
+    labels_N_inv_flip = np.zeros(nelt+1, dtype=np.int32)
+    labels_N_inv_flip[np.flip(labels_N)] = np.flip(np.arange(0,len(labels_N)))
     labels_P_inv = np.zeros(nelt+1, dtype=np.int32)
     labels_P_inv[labels_P] = np.arange(0,len(labels_P))
 
     indices = np.zeros(nelt, dtype=np.int32)
     indices[labels_P_inv[1:]] = labels_N_inv[1:]
+    indices_flip = np.zeros(nelt, dtype=np.int32)
+    indices_flip[labels_P_inv[1:]] = labels_N_inv_flip[1:]
 
     iter_frames = iter(step.frames)
     next(iter_frames)
@@ -70,10 +75,15 @@ def post_plate(filename,pressure_curve):
 #       Read the normal field
         field  = frame.fieldOutputs['SDV_N']
         N = read_bulk_data(field)
+#       Read the damage field, labels same as N
+        field  = frame.fieldOutputs['SDV_DAMAGE']
+        D = read_bulk_data(field)
 #       prepare arrays and store data
         Pel[i,:] = P[:,0]
         #Nel[i,labels_P_inv[1:]] = N[labels_N_inv[1:],0]
         Nel[i,:] = N[indices,0]
+        Del[i,:,0] = D[indices_flip,0]
+        Del[i,:,1] = D[indices,0]
 #       Get the time of field
         time_field[i] = frame.frameValue
 #   Interpolate overall pressure
@@ -84,7 +94,7 @@ def post_plate(filename,pressure_curve):
     #np.savetxt(filename+'_P.csv',Pel,delimiter=',')
     #np.savetxt(filename+'_N.csv',Nel,delimiter=',')
     #np.savetxt(filename+'_PLAG.csv',np.transpose([time_field,P_lag]),delimiter=',')
-    np.savez_compressed(filename, P=Pel, N=Nel, PLAG=np.transpose([time_field,P_lag]), labels=labels_P)
+    np.savez_compressed(filename, P=Pel, N=Nel, PLAG=np.transpose([time_field,P_lag]), D=Del, labels=labels_P)
     #-------------------------------------------------------------------------------
     # Close odb file
     #-------------------------------------------------------------------------------
