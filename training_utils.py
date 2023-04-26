@@ -99,3 +99,70 @@ def evaluate_model(model, dataset, X_norms, Y_norms):
     df["Job"] = dataset.keys()
     
     return df
+
+
+def to_fortran_from_model(filename):
+    """
+    Write a text file network weights and bias to use with the FORTAN subroutines.
+    It uses a keras model to write the parameters.
+    """
+#-------------------------------------------------------------------------------------------------------------------------------------
+#   DEFINE FILENAME FOR FORTRAN
+#-------------------------------------------------------------------------------------------------------------------------------------
+    outputname = filename.split('.')[0]+'.ann'
+#-------------------------------------------------------------------------------------------------------------------------------------
+#   LOAD KERAS MODEL
+#-------------------------------------------------------------------------------------------------------------------------------------
+    model = keras.models.load_model(filename,compile=False)
+#-------------------------------------------------------------------------------------------------------------------------------------
+#   OPEN FILE
+#-------------------------------------------------------------------------------------------------------------------------------------
+    fp = open(outputname,'w')
+#-------------------------------------------------------------------------------------------------------------------------------------
+#   SET VARIABLES
+#-------------------------------------------------------------------------------------------------------------------------------------
+    n_layers = len(model.layers)
+    k = 0
+#-------------------------------------------------------------------------------------------------------------------------------------
+#   WRITE LAYERS
+#-------------------------------------------------------------------------------------------------------------------------------------
+    for layer,k in zip(model.layers,range(0,n_layers)):
+        nrow    = np.shape(layer.get_weights()[0])[0]
+        ncolumn = np.shape(layer.get_weights()[0])[1]
+        activation = layer.get_config()['activation']
+        activation_code = get_code_from_activation(activation)
+#-------------------------------------------------------------------------------------------------------------------------------------
+#       WRITE LAYER PARAMETERS
+#-------------------------------------------------------------------------------------------------------------------------------------
+        if k == 0:
+           fp.write('*input_layer,inputs={},neurons={},activation={}\n'.format(nrow,ncolumn,activation_code))
+        elif k==n_layers-1:
+           fp.write('*output_layer,outputs={},activation={}\n'.format(ncolumn,activation_code))
+        else:
+           fp.write('*hidden_layer,number={},neurons={},activation={}\n'.format(k,ncolumn,activation_code))
+        for neurons_weight,neurons_bias in zip(np.transpose(layer.get_weights()[0]), layer.get_weights()[1]):
+           nparam = len(list(neurons_weight))+1
+           fp.write(('{:.8f}, '*nparam +'\n').format(*list(neurons_weight),neurons_bias))
+#-------------------------------------------------------------------------------------------------------------------------------------
+#   CLOSE FILE
+#-------------------------------------------------------------------------------------------------------------------------------------
+    fp.close()
+    return
+
+def get_code_from_activation(activation):
+    """
+    Get code name from activation function name
+    """
+    if activation == 'linear':
+       return 0
+    elif activation == 'relu':    
+       return 1
+    elif activation == 'sigmoid':    
+       return 2
+    elif activation == 'softmax':    
+       return 3
+    elif activation == 'tanh':
+       return 4
+    else:
+       print('error activation function not defined')
+       return []
