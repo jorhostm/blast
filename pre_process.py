@@ -56,7 +56,7 @@ if __name__ == "__main__":
                amps.add(str(val))
             elif opt == "amps":
                amps.update([str(v) for v in eval(val)])
-            elif opt == "loadsurface":
+            elif opt == "load":
                val = str(val).lower()
                assert val == "fsi" or val == "ann"
                loadsurface = val
@@ -66,7 +66,7 @@ if __name__ == "__main__":
                ann_model = val
 
 
-   materials = {"T6":"SMM_AA6016_T6", "T4":"SMM_AA6016_T4", "T7":"SMM_AA6016_T7"}
+   materials = {"T6":"SMM_AA6016_T6", "T4":"SMM_AA6016_T4", "T7":"SMM_AA6016_T7", "FSI":"FSI_T7"}
    amplitudes = {"10": "Driver10Bar","15": "Driver15Bar"}
    loadsurfaces = {"fsi": "FSISurface", "ann": "ANNSurface"}
 
@@ -114,10 +114,9 @@ if __name__ == "__main__":
                   print(f"Generating job {jobname}...")
                   if loadsurface == "ann":
                      queue_script.writelines([f"cp {ann_model} {model}_{matk}_{ampk}.ann\n"])
+                     clean_script.writelines([f" {model}_{matk}_{ampk}.ann"])
                   queue_script.writelines([f"sbatch ../jobaba {jobname}\n"])
                   clean_script.writelines([f" {jobname}"])
-                  if loadsurface == "ann":
-                     clean_script.writelines([f" {model}_{matk}_{ampk}.ann"])
                   post_script.writelines([f"abaqus python post_plate.py {model}_{matk}_{ampk} {ampv.upper()} &>/dev/null &\n"])
                   with open(jobname,'w') as f:
                      f.write(template.format(mat=matv, amp=ampv, model=model, loadsurface=loadsurfaces[loadsurface]))

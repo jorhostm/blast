@@ -59,3 +59,24 @@
 *User Defined Field, properties=8
 ** dcrit,     WcB,    WcS,   WcL,      c, phi, gamma, THICK
      1.0,  366.01, 104.13, 38.72, 0.6646, 1.0,   1.0,   1.5
+******************************************************************
+******************************************************************
+*Material, name=FSI_T7
+*DENSITY
+2.7e-09
+*ELASTIC
+70000.0,0.3
+*Plastic, hardening=USER, properties=7
+** sigma0, THETA0R1,  Q0R1, THETA0R2,  Q0R2, THETA0R3,   Q0R3
+   149.2,   2929.5, 52.5,  231.8, 61.0,   0, 0
+*Depvar, delete=6
+6,
+1,PEEQ,"equivalent plastic strain"
+2,DAMAGE,"Damage Cockcroft-Latham"
+3,leote,"Element aspect ratio"
+4,omega,"Element deformation mode"
+5,N,"Element normal"
+6,FAIL,"Failure status"
+*User Defined Field, properties=8
+** dcrit,     WcB,    WcS,   WcL,      c, phi, gamma, THICK
+     1.0,  68.0, 68.0, 0, 0, 1.0,   1.0,   1.5
