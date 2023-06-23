@@ -3218,3 +3218,1519 @@ from connectorBehavior import *
 mdb.models['4-45-FSI'].rootAssembly.regenerate()
 mdb.jobs.changeKey(fromName='4-HV_FSI', toName='4-45_FSI')
 # Save by jorge on 2023_06_15-16.07.35; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.Model(name='1-45', objectToCopy=mdb.models['4-45-FSI'])
+mdb.models['1-45'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['1-45'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['1-45'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-45'].sketches['__edit__'], 
+    upToFeature=mdb.models['1-45'].parts['Plate'].features['Shell planar-1'])
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].geometry[137], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[150], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[151], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[152], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[153], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[154], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[155], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[156], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[157], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[158], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[159], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[160], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[161], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[162], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[163], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[164], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[165], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[166], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[133], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[134], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[135], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[136], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[137], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[138], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[139], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[140], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[141], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[142], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[143], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[144], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[145], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[146], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[147], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[148], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[149], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[154], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[116], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[117], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[118], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[119], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[121], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[122], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[123], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[124], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[125], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[126], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[127], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[128], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[129], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[130], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[131], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[132], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[137], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[124], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[111], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[55], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[56], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[57], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[58], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[59], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[60], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[49], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[50], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[51], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[52], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[53], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[54], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[43], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[44], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[45], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[46], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[47], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[48], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[532], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[533], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[536], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[539], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[542], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[545], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[546], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[547], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[548], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[549], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[550], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[551], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[552], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[553], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[570], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[571], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[572], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[573], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[574], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[473], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[474], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[477], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[480], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[483], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[486], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[487], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[488], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[489], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[490], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[491], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[492], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[493], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[494], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[511], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[512], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[513], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[514], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[515], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[414], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[415], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[418], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[421], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[424], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[427], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[428], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[429], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[430], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[431], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[432], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[433], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[434], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[435], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[452], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[453], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[454], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[455], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[456]))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((150.0, 
+    -150.0), (150.0, -150.0), (147.5, -142.5), (145.0, -138.75), (141.25, 
+    -133.75), (137.5, -130.0), (133.75, -126.25), (130.0, -121.25), (126.25, 
+    -117.5), (121.25, -112.5), (117.5, -108.75), (113.75, -105.0), (111.25, 
+    -101.25), (107.5, -97.5), (103.75, -93.75), (101.25, -90.0), (98.75, 
+    -87.5), (96.25, -85.0), (95.0, -82.5), (92.5, -78.75), (90.0, -76.25), (
+    87.5, -72.5), (85.0, -68.75), (81.25, -65.0), (78.75, -61.25), (75.0, 
+    -56.25), (71.25, -52.5), (66.25, -48.75), (61.25, -43.75), (57.5, -40.0), (
+    53.75, -37.5), (51.25, -35.0), (47.5, -32.5), (40.0, -25.0), (37.5, -22.5), 
+    (35.0, -20.0), (31.25, -17.5), (28.75, -15.0), (26.25, -13.75), (23.75, 
+    -12.5), (20.0, -11.25), (17.5, -10.0), (13.75, -8.75), (11.25, -7.5), (
+    8.75, -6.25), (5.0, -5.0), (2.5, -2.5), (1.25, -1.25), (0.0, -3.75), (1.25, 
+    -5.0)))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((1.25, -5.0), 
+    (1.25, -5.0), (0.0, -2.5), (0.0, -2.5), (-1.25, -1.25), (0.0, 0.0), (0.0, 
+    0.0)))
+del mdb.models['1-45'].sketches['__edit__']
+mdb.models['4-45'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['4-45'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['4-45'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['4-45'].sketches['__edit__'], 
+    upToFeature=mdb.models['4-45'].parts['Plate'].features['Shell planar-1'])
+del mdb.models['4-45'].sketches['__edit__']
+mdb.models['1-45'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['1-45'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['1-45'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-45'].sketches['__edit__'], 
+    upToFeature=mdb.models['1-45'].parts['Plate'].features['Shell planar-1'])
+del mdb.models['1-45'].sketches['__edit__']
+mdb.models['4-HV'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['4-HV'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['4-HV'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['4-HV'].sketches['__edit__'], 
+    upToFeature=mdb.models['4-HV'].parts['Plate'].features['Shell planar-1'])
+mdb.models['4-HV'].sketches['__edit__'].dimensions[20].setValues(textPoint=(
+    -75.0, 58.75))
+mdb.models['4-HV'].sketches['__edit__'].Spot(point=(-75.0, 75.0))
+del mdb.models['4-HV'].sketches['__edit__']
+mdb.models['1-45'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['1-45'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['1-45'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-45'].sketches['__edit__'], 
+    upToFeature=mdb.models['1-45'].parts['Plate'].features['Shell planar-1'])
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].geometry[116], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[117], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[118], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[119], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[121], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[122], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[123], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[124], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[125], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[126], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[127], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[128], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[129], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[130], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[131], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[132], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[137], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[150], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[151], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[152], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[153], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[154], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[155], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[156], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[157], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[158], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[159], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[160], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[161], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[162], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[163], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[164], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[165], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[166], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[133], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[134], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[135], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[136], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[137], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[138], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[139], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[140], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[141], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[142], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[143], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[144], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[145], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[146], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[147], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[148], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[149], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[154], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[111], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[137], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[124], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[43], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[44], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[45], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[46], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[47], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[48], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[55], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[56], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[57], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[58], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[59], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[60], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[49], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[50], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[51], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[52], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[53], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[54], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[414], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[415], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[418], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[421], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[424], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[427], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[428], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[429], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[430], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[431], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[432], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[433], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[434], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[435], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[452], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[453], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[454], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[455], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[456], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[532], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[533], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[536], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[539], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[542], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[545], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[546], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[547], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[548], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[549], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[550], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[551], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[552], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[553], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[570], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[571], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[572], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[573], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[574], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[473], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[474], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[477], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[480], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[483], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[486], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[487], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[488], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[489], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[490], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[491], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[492], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[493], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[494], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[511], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[512], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[513], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[514], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[515]))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[98], points=((
+    -59.9986820220947, 60.0013179779053), (-59.9984169006348, 60.0), (
+    -59.9965362548828, 60.0015907287598), (-59.9963989257812, 
+    60.0015907287598)))
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].constraints[353], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[354], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[358], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[361], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[364], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[367], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[369], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[370], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[371], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[372]))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], points=((-60.0, 
+    60.0), (-60.0, 60.0), (-60.0, 60.0), (-60.0202827453613, 60.020881652832), 
+    (-60.0280227661133, 60.0286140441895), (-60.0342178344727, 
+    60.0378952026367), (-60.0419578552246, 60.047176361084), (
+    -60.0497016906738, 60.0549087524414), (-60.0558929443359, 
+    60.0657348632812), (-60.0636367797852, 60.0750160217285), (
+    -60.0713806152344, 60.0827484130859), (-60.0837669372559, 
+    60.0904846191406), (-60.0946044921875, 60.098217010498), (
+    -60.1038970947266, 60.1059494018555), (-60.1147346496582, 
+    60.1136856079102), (-60.1255722045898, 60.1214179992676), (
+    -60.1395072937012, 60.129150390625), (-60.1549949645996, 60.1368827819824), 
+    (-60.1673812866211, 60.1430702209473), (-60.1797676086426, 
+    60.1477127075195), (-60.1921539306641, 60.1523513793945), (
+    -60.2060890197754, 60.155445098877), (-60.2215766906738, 60.1585388183594), 
+    (-60.2463493347168, 60.1631774902344), (-60.2757682800293, 
+    60.1662712097168), (-60.2989959716797, 60.1693649291992), (
+    -60.3144798278809, 60.1709098815918), (-60.329963684082, 60.1724586486816), 
+    (-60.3454475402832, 60.1724586486816), (-60.3609313964844, 
+    60.1724586486816), (-60.3748664855957, 60.1709098815918), (
+    -60.3872566223145, 60.1740036010742), (-60.4011917114258, 
+    60.1770973205566), (-60.4135780334473, 60.1801910400391), (
+    -60.4197731018066, 60.1910171508789), (-60.4197731018066, 
+    60.1925659179688)))
+mdb.models['1-45'].sketches['__edit__'].dimensions[42].setValues(textPoint=(
+    -60.6934585571289, 60.8029594421387))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], points=((
+    -60.4197731018066, 60.1925659179688), (-60.4197731018066, 
+    60.1925659179688), (-60.4289779663086, 60.2233543395996), (
+    -60.4470977783203, 60.2640762329102), (-60.4757881164551, 
+    60.3259162902832), (-60.5120277404785, 60.3907737731934), (
+    -60.5497779846191, 60.4511070251465), (-60.5814895629883, 
+    60.4993705749512), (-60.6056480407715, 60.5340614318848), (
+    -60.6237678527832, 60.5597038269043), (-60.6373558044434, 
+    60.5853462219238), (-60.6479263305664, 60.601936340332), (
+    -60.6569862365723, 60.6140022277832), (-60.6660461425781, 
+    60.6215438842773), (-60.6735954284668, 60.6290855407715), (
+    -60.6871871948242, 60.6396446228027), (-60.7037963867188, 
+    60.6562347412109), (-60.7188949584961, 60.6698112487793), (
+    -60.7294654846191, 60.6773529052734), (-60.7339973449707, 
+    60.6848945617676), (-60.7445678710938, 60.6984672546387), (
+    -60.7596664428711, 60.7256164550781), (-60.7777862548828, 
+    60.7527656555176), (-60.7974166870117, 60.7784080505371), (
+    -60.8185539245605, 60.8025398254395), (-60.842716217041, 60.828182220459), 
+    (-60.865364074707, 60.8508071899414), (-60.8865051269531, 
+    60.8704147338867), (-60.9076461791992, 60.8885154724121), (
+    -60.9333152770996, 60.9066123962402), (-60.9559631347656, 
+    60.9247131347656), (-60.981632232666, 60.9458274841309), (
+    -61.0042839050293, 60.9639282226562), (-61.0269317626953, 
+    60.9835357666016), (-61.0435447692871, 60.9986190795898), (
+    -61.0571327209473, 61.0137023925781), (-61.0707244873047, 
+    61.0272789001465), (-61.0812911987305, 61.0393447875977), (
+    -61.0903511047363, 61.0529174804688), (-61.1009216308594, 
+    61.0664939880371), (-61.1114921569824, 61.0800666809082), (
+    -61.1205520629883, 61.0921325683594), (-61.1311225891113, 
+    61.1042022705078), (-61.1416931152344, 61.116268157959), (
+    -61.1507530212402, 61.1283340454102), (-61.1583023071289, 
+    61.1358757019043), (-61.1643409729004, 61.1464347839355), (
+    -61.1703834533691, 61.1554832458496), (-61.1764221191406, 
+    61.1660423278809), (-61.1839714050293, 61.1750907897949), (
+    -61.1945419311523, 61.1886672973633), (-61.2036018371582, 
+    61.2007331848145), (-61.2156829833984, 61.2173233032227), (
+    -61.2277603149414, 61.2339134216309), (-61.25, 61.25), (-61.25, 61.25), (
+    -61.25, 61.2686042785645), (-61.25, 61.2791633605957), (-61.25, 
+    61.289722442627), (-61.2670211791992, 61.3002815246582), (
+    -61.2730598449707, 61.3048057556152), (-61.2775917053223, 
+    61.3063125610352), (-61.2821197509766, 61.3048057556152), (
+    -61.2896728515625, 61.3048057556152), (-61.3002395629883, 
+    61.3048057556152), (-61.3123207092285, 61.3048057556152), (
+    -61.3259124755859, 61.3063125610352), (-61.3379898071289, 
+    61.3048057556152), (-61.3515815734863, 61.3063125610352), (
+    -61.3606414794922, 61.3063125610352), (-61.3681907653809, 
+    61.3048057556152), (-61.3727188110352, 61.3048057556152), (
+    -61.3787612915039, 61.3063125610352), (-61.381778717041, 61.3048057556152), 
+    (-61.3847999572754, 61.3048057556152)))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], points=((
+    -61.3847999572754, 61.3048057556152), (-61.3847999572754, 
+    61.3048057556152), (-61.4122581481934, 61.3374557495117), (
+    -61.4441184997559, 61.4011001586914), (-61.5046463012695, 
+    61.5220260620117), (-61.5842895507812, 61.6493148803711), (
+    -61.663932800293, 61.7670555114746), (-61.7435760498047, 61.8911590576172), 
+    (-61.8264083862305, 62.0248107910156), (-61.909236907959, 
+    62.1552810668945), (-61.9952507019043, 62.2825698852539), (
+    -62.0780792236328, 62.3971290588379), (-62.1545372009277, 62.5), (
+    -62.2182540893555, 62.5562400817871), (-62.2724113464355, 
+    62.6103363037109), (-62.3042678833008, 62.6389770507812), (
+    -62.3170127868652, 62.6485214233398)))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], points=((
+    -62.3170127868652, 62.6485214233398), (-62.3170127868652, 
+    62.6485214233398), (-62.3328056335449, 62.6716651916504), (
+    -62.3501319885254, 62.6889724731445), (-62.3663024902344, 
+    62.7039680480957), (-62.3882446289062, 62.7201232910156), (
+    -62.4090385437012, 62.7339668273926), (-62.4286727905273, 
+    62.7466583251953), (-62.4436874389648, 62.7558860778809), (
+    -62.4540824890137, 62.762809753418), (-62.465633392334, 62.7720413208008), 
+    (-62.481803894043, 62.7847328186035), (-62.5, 62.7997283935547), (
+    -62.5129890441895, 62.8147277832031), (-62.5268516540527, 
+    62.8285751342773), (-62.5418663024902, 62.8435707092285), (
+    -62.5591888427734, 62.8608779907227), (-62.5776710510254, 
+    62.8758773803711), (-62.5915298461914, 62.8874130249023), (
+    -62.6019248962402, 62.8977966308594), (-62.6123237609863, 
+    62.9081802368164), (-62.6215629577637, 62.9174118041992), (
+    -62.6284942626953, 62.9243354797363), (-62.630802154541, 
+    62.9277954101562)))
+mdb.models['1-45'].sketches['__edit__'].dimensions[39].setValues(textPoint=(
+    -62.8700866699219, 63.2949981689453))
+mdb.models['1-45'].sketches['__edit__'].dimensions[41].setValues(textPoint=(
+    -63.5760459899902, 62.1826095581055))
+mdb.models['1-45'].sketches['__edit__'].dimensions[40].setValues(textPoint=(
+    -62.9993438720703, 62.2024726867676))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], points=((
+    -62.630802154541, 62.9277954101562), (-62.630802154541, 62.9277954101562), 
+    (-62.7706527709961, 63.0665588378906), (-62.8999137878418, 
+    63.1758117675781), (-63.0291748046875, 63.2751312255859), (
+    -63.1385498046875, 63.3446578979492), (-63.237979888916, 63.4141807556152), 
+    (-63.3274688720703, 63.4936370849609), (-63.4070129394531, 
+    63.5432968139648), (-63.4666748046875, 63.6028900146484), (
+    -63.5959320068359, 63.75), (-63.75, 63.8909187316895), (-63.8842849731445, 
+    64.0101013183594), (-64.1030349731445, 64.1789474487305), (
+    -64.3118362426758, 64.3875198364258), (-64.4609832763672, 
+    64.5662994384766), (-64.6001892089844, 64.725212097168), (
+    -64.7493362426758, 64.8841247558594), (-65.0, 65.0), (-65.0, 
+    65.1324234008789), (-65.1570053100586, 65.2913360595703), (
+    -65.3160934448242, 65.440315246582), (-65.4652404785156, 65.5892944335938), 
+    (-65.5845565795898, 65.6886138916016), (-65.6939315795898, 
+    65.7879409790039), (-65.7734756469727, 65.8673934936523), (
+    -65.942512512207, 66.0263061523438), (-66.25, 66.25), (-66.25, 66.25), (
+    -66.4595489501953, 66.3838577270508), (-66.7280197143555, 
+    66.5527038574219), (-66.9865417480469, 66.7016830444336), (
+    -67.3146591186523, 66.9003295898438), (-67.5, 67.0791015625), (
+    -67.7919311523438, 67.2082214355469), (-67.911247253418, 67.2876739501953), 
+    (-68.0106811523438, 67.377067565918), (-68.1001663208008, 67.5), (
+    -68.1399383544922, 67.5), (-68.1200561523438, 67.5), (-68.1498870849609, 
+    67.6352996826172), (-68.1797103881836, 67.7048187255859), (
+    -68.2095413208008, 67.7544784545898)))
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[100], points=((
+    -60.0020236968994, 59.9979763031006), (-60.0, 60.0), (-60.0, 
+    59.9931793212891)))
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].constraints[353], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[354], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[358], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[361], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[364], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[367], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[369], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[370], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[371], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[372]))
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].constraints[353], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[354], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[358], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[361], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[364], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[367], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[369], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[370], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[371], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[372]))
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[101], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[98])
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[98], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[102])
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[102], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[100])
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[100], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[101])
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], points=((-60.0, 
+    60.0), (-60.0, 60.0), (-60.0, 60.0025596618652), (-60.0021553039551, 
+    60.0038642883301), (-60.004020690918, 60.0055389404297), (
+    -60.0060729980469, 60.0070304870605), (-60.0084953308105, 
+    60.0085182189941), (-60.0103607177734, 60.009635925293), (
+    -60.0118522644043, 60.0105667114258), (-60.0131568908691, 
+    60.0113143920898), (-60.014835357666, 60.0129890441895), (
+    -60.0167007446289, 60.0146636962891), (-60.0185661315918, 
+    60.0161552429199), (-60.0198707580566, 60.0172729492188), (
+    -60.0206146240234, 60.0185775756836), (-60.0217361450195, 
+    60.0208129882812), (-60.0232276916504, 60.0232315063477), (
+    -60.0245323181152, 60.0249099731445), (-60.025463104248, 60.0260276794434), 
+    (-60.0267677307129, 60.0271453857422), (-60.027889251709, 60.027889251709), 
+    (-60.0299377441406, 60.028076171875), (-60.0338554382324, 
+    60.0273284912109), (-60.038516998291, 60.0247230529785), (
+    -60.0428047180176, 60.021183013916), (-60.0465354919434, 60.0168991088867), 
+    (-60.048397064209, 60.0128021240234), (-60.048957824707, 60.010196685791), 
+    (-60.0476531982422, 60.009449005127), (-60.0461616516113, 
+    60.0090789794922), (-60.0444831848145, 60.0087051391602), (
+    -60.0428047180176, 60.0079612731934), (-60.0411262512207, 
+    60.0068435668945), (-60.0394477844238, 60.0055389404297), (
+    -60.0373954772949, 60.0038642883301), (-60.0359039306641, 
+    60.0021858215332), (-60.0342254638672, 60.0), (-60.0329208374023, 60.0), (
+    -60.0316162109375, 60.0), (-60.0299377441406, 60.0), (-60.0280723571777, 
+    60.0), (-60.0256500244141, 60.0), (-60.0217361450195, 60.0), (
+    -60.0168876647949, 60.0), (-60.0124130249023, 60.0), (-60.0094261169434, 
+    60.0), (-60.0068168640137, 60.0), (-60.004207611084, 60.0), (
+    -60.0023422241211, 59.9977149963379), (-60.0, 60.0), (-60.0, 60.0), (-60.0, 
+    60.0), (-60.0, 60.0), (-59.9978675842285, 59.9977149963379), (
+    -59.9973068237305, 59.9962272644043), (-59.9965629577637, 
+    59.9947357177734), (-59.9960021972656, 59.9932441711426), (
+    -59.9954452514648, 59.991943359375), (-59.9952583312988, 59.9902648925781), 
+    (-59.9956283569336, 59.9887771606445), (-59.9963760375977, 
+    59.9876594543457), (-59.9976806640625, 59.9870986938477), (-60.0, 
+    59.9863548278809), (-60.0, 59.9859809875488), (-60.0019683837891, 
+    59.9857940673828), (-60.0036468505859, 59.9861679077148), (
+    -60.0051383972168, 59.9869117736816), (-60.0068168640137, 
+    59.9878463745117), (-60.0084953308105, 59.9885902404785), (
+    -60.0099868774414, 59.9893341064453), (-60.0111045837402, 
+    59.9902648925781), (-60.0122261047363, 59.9910125732422), (
+    -60.0127830505371, 59.9925003051758), (-60.0129699707031, 
+    59.9941787719727), (-60.0129699707031, 59.9960403442383), (
+    -60.0124130249023, 59.9973449707031), (-60.0116653442383, 60.0), (
+    -60.0111045837402, 60.0), (-60.0101737976074, 60.0), (-60.0086822509766, 
+    60.0), (-60.0073776245117, 60.0), (-60.0062599182129, 60.0023727416992), (
+    -60.0051383972168, 60.003303527832), (-60.00439453125, 60.0044212341309), (
+    -60.0036468505859, 60.0055389404297), (-60.0029029846191, 
+    60.0068435668945), (-60.0021553039551, 60.0081443786621), (-60.0, 
+    60.009449005127), (-60.0, 60.0103797912598), (-60.0, 60.0113143920898), (
+    -60.0, 60.0120582580566), (-59.9971199035645, 60.0126152038574), (
+    -59.9958152770996, 60.0131759643555), (-59.9946975708008, 
+    60.0139198303223), (-59.993579864502, 60.0141067504883), (-59.993766784668, 
+    60.0124282836914), (-59.993766784668, 60.0105667114258), (-59.993766784668, 
+    60.0087051391602), (-59.9941368103027, 60.0072135925293), (
+    -59.9946975708008, 60.0057258605957), (-59.9954452514648, 
+    60.0046081542969), (-59.9961891174316, 60.003490447998), (
+    -59.9971199035645, 60.0025596618652), (-60.0, 60.0), (-60.0, 60.0), (-60.0, 
+    60.0), (-60.0, 60.0), (-60.0, 60.0), (-60.0, 60.0021858215332), (-60.0, 
+    60.0021858215332), (-60.0, 60.0), (-60.0, 60.0), (-60.0, 60.0)))
+mdb.models['1-45'].sketches['__edit__'].dimensions[39].setValues(textPoint=(
+    -60.3019332885742, 60.2524909973145))
+mdb.models['1-45'].sketches['__edit__'].dimensions[40].setValues(textPoint=(
+    -60.1526947021484, 59.8182334899902))
+mdb.models['1-45'].sketches['__edit__'].dimensions[41].setValues(textPoint=(
+    -60.386287689209, 59.6065063476562))
+mdb.models['1-45'].sketches['__edit__'].dimensions[42].setValues(textPoint=(
+    -59.7936553955078, 59.7707023620605))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], points=((-60.0, 
+    60.0), (-60.0, 60.0), (-60.0250854492188, 60.0299606323242), (
+    -60.0618553161621, 60.0623664855957), (-60.1007843017578, 
+    60.0904541015625), (-60.1202507019043, 60.1012573242188), (
+    -60.133228302002, 60.1120567321777), (-60.14404296875, 60.122859954834), (
+    -60.1570205688477, 60.1336631774902), (-60.1786499023438, 
+    60.1531066894531), (-60.2089309692383, 60.1790313720703), (
+    -60.2457008361816, 60.2049598693848), (-60.2846298217773, 
+    60.2287254333496), (-60.3127479553223, 60.2481689453125), (
+    -60.3300514221191, 60.2568092346191), (-60.3408660888672, 
+    60.2676124572754), (-60.3538436889648, 60.2784156799316), (
+    -60.3711471557617, 60.2870559692383), (-60.3927764892578, 
+    60.3021812438965), (-60.4208946228027, 60.3173027038574), (
+    -60.4446868896484, 60.3367462158203), (-60.4728012084961, 
+    60.3583526611328), (-60.500919342041, 60.38427734375), (-60.5420150756836, 
+    60.4166870117188), (-60.5874366760254, 60.4512519836426), (
+    -60.6415100097656, 60.487979888916), (-60.6955795288086, 60.5203895568848), 
+    (-60.753978729248, 60.5527954101562), (-60.8102149963379, 60.580883026123), 
+    (-60.8642845153809, 60.6024856567383), (-60.9140319824219, 
+    60.6197700500488), (-60.9616165161133, 60.6327323913574), (
+    -61.0005493164062, 60.6413764953613), (-61.03515625, 60.6478576660156), (
+    -61.0740852355957, 60.6521797180176), (-61.1130180358887, 
+    60.6586608886719), (-61.149787902832, 60.6608200073242), (
+    -61.1908836364746, 60.6629791259766), (-61.227653503418, 60.6629791259766), 
+    (-61.25, 60.6608200073242), (-61.2773971557617, 60.6586608886719), (
+    -61.2947006225586, 60.6564979553223), (-61.2860488891602, 
+    60.6694602966309), (-61.2752342224121, 60.6824264526367), (-61.25, 
+    60.6932258605957), (-61.25, 60.7061920166016), (-61.25, 60.7169914245605), 
+    (-61.2254905700684, 60.7277946472168), (-61.2146759033203, 
+    60.7407569885254), (-61.2168388366699, 60.7580413818359), (-61.25, 
+    60.7882881164551), (-61.25, 60.8293380737305), (-61.3011894226074, 
+    60.8747062683105), (-61.3293075561523, 60.911434173584), (
+    -61.3574256896973, 60.9438438415527), (-61.3790550231934, 
+    60.9676094055176), (-61.3985214233398, 60.9892120361328), (
+    -61.4158248901367, 61.0086555480957), (-61.430965423584, 61.0216217041016), 
+    (-61.4461059570312, 61.0324211120605), (-61.4612426757812, 
+    61.0453872680664), (-61.4763832092285, 61.0561866760254), (
+    -61.4915237426758, 61.069149017334), (-61.5023384094238, 61.0799522399902), 
+    (-61.5174789428711, 61.0885963439941), (-61.5282936096191, 
+    61.0993957519531), (-61.545597076416, 61.1145210266113), (
+    -61.5650634765625, 61.1318054199219), (-61.5823669433594, 
+    61.1469268798828), (-61.6039962768555, 61.166374206543), (
+    -61.6212997436523, 61.1793365478516), (-61.6321144104004, 
+    61.1922988891602), (-61.6321144104004, 61.1858177185059), (
+    -61.6104850769043, 61.1577301025391), (-61.5737152099609, 
+    61.1166801452637), (-61.506664276123, 61.0605087280273), (
+    -61.4201507568359, 61.0064964294434), (-61.3141670227051, 
+    60.9568061828613), (-61.2038612365723, 60.9027938842773), (
+    -61.1086921691895, 60.8531036376953), (-61.0027122497559, 
+    60.8012504577637), (-60.885913848877, 60.7515602111816), (
+    -60.7777709960938, 60.7169914245605), (-60.6890907287598, 
+    60.6845855712891), (-60.6220436096191, 60.650016784668), (
+    -60.5722961425781, 60.6197700500488), (-60.5312004089355, 
+    60.5895233154297), (-60.4857788085938, 60.5592765808105), (
+    -60.4511756896973, 60.5398330688477), (-60.4533386230469, 
+    60.5290298461914), (-60.4511756896973, 60.5095863342285), (
+    -60.4338722229004, 60.4663772583008), (-60.3992652893066, 
+    60.4210052490234), (-60.3646583557129, 60.3821182250977), (
+    -60.3343772888184, 60.3497123718262), (-60.2997703552246, 
+    60.3129844665527), (-60.2673263549805, 60.2827377319336), (
+    -60.232723236084, 60.2503280639648), (-60.1894645690918, 60.2092781066895), 
+    (-60.1526947021484, 60.1747131347656), (-60.1202507019043, 
+    60.1423034667969), (-60.0791549682617, 60.0990943908691), (
+    -60.0337371826172, 60.0580444335938), (-60.0, 60.0234794616699), (
+    -59.9666862487793, 60.0), (-59.9299163818359, 59.965145111084), (
+    -59.8931465148926, 59.9348983764648), (-59.8628692626953, 59.9111328125), (
+    -59.8304252624512, 59.8808860778809), (-59.7936553955078, 
+    59.8528022766113), (-59.7655372619629, 59.8290367126465), (
+    -59.7395820617676, 59.807430267334), (-59.7157897949219, 59.7901458740234), 
+    (-59.7114639282227, 59.792308807373), (-59.7266044616699, 
+    59.8139114379883), (-59.7439079284668, 59.8311958312988), (
+    -59.7633743286133, 59.8528022766113), (-59.8066329956055, 
+    59.8981704711914), (-59.8736801147461, 59.9737854003906), (
+    -59.9537086486816, 60.0472450256348), (-60.0, 60.1034164428711), (
+    -60.0856437683105, 60.1552658081055), (-60.1483688354492, 
+    60.2157592773438), (-60.2067680358887, 60.2740936279297), (
+    -60.2630004882812, 60.3259468078613), (-60.3149108886719, 
+    60.3713150024414), (-60.3560066223145, 60.4080429077148), (
+    -60.4035911560059, 60.4490928649902), (-60.4533386230469, 
+    60.4858207702637), (-60.4965934753418, 60.5203895568848), (
+    -60.5355262756348, 60.5527954101562), (-60.5744590759277, 
+    60.5830421447754), (-60.6025772094727, 60.6046485900879), (
+    -60.6350212097168, 60.6240921020508), (-60.6588096618652, 
+    60.6370544433594), (-60.6739501953125, 60.6478576660156), (
+    -60.693416595459, 60.6608200073242), (-60.7193717956543, 60.6759414672852), 
+    (-60.7453269958496, 60.6932258605957), (-60.7647933959961, 
+    60.704029083252), (-60.7842597961426, 60.7126731872559), (
+    -60.8015632629395, 60.7191543579102), (-60.8188667297363, 
+    60.7234725952148), (-60.8253555297852, 60.7256355285645)))
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].geometry[98], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[100], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[101], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[102], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[103], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[104], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[105], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[106], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[107], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[108], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[109], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[110], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[111], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[112], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[113], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[114], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[115], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[120], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[37], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[38], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[39], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[40], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[41], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[42], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[368], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[373], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[374], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[375], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[392], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[393], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[394], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[395], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[397], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[591], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[592], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[593], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[594]))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((150.0, 
+    -150.0), (150.0, -150.0), (147.5, -146.25), (146.25, -142.5), (143.75, 
+    -138.75), (140.0, -135.0), (126.25, -120.0), (121.25, -115.0), (116.25, 
+    -110.0), (111.25, -105.0), (106.25, -101.25), (101.25, -96.25), (95.0, 
+    -91.25), (90.0, -87.5), (85.0, -83.75), (80.0, -80.0), (75.0, -76.25), (
+    72.5, -73.75)))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((72.5, 
+    -73.75), (72.5, -73.75), (71.25, -70.0), (68.75, -66.25), (67.5, -63.75), (
+    63.75, -60.0), (62.5, -56.25), (58.75, -53.75), (57.5, -50.0), (53.75, 
+    -46.25), (51.25, -43.75), (48.75, -41.25), (46.25, -37.5), (42.5, -35.0), (
+    40.0, -32.5), (37.5, -30.0), (36.25, -27.5), (35.0, -26.25), (32.5, 
+    -23.75), (30.0, -20.0), (27.5, -18.75), (25.0, -16.25), (23.75, -15.0), (
+    21.25, -12.5), (18.75, -11.25), (16.25, -10.0), (13.75, -8.75), (11.25, 
+    -6.25), (7.5, -5.0), (5.0, -3.75), (3.75, -2.5), (1.25, -1.25), (0.0, 
+    0.0)))
+mdb.models['1-45'].sketches['__edit__'].Spot(point=(-81.25, 81.25))
+mdb.models['1-45'].sketches['__edit__'].Spot(point=(-75.0, 75.0))
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].vertices[151], ))
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[150])
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].undo()
+#* Nothing to undo.
+mdb.models['1-45'].sketches['__edit__'].undo()
+#* Nothing to undo.
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+mdb.models['1-45'].sketches['__edit__'].redo()
+#* Nothing to redo.
+mdb.models['1-45'].sketches['__edit__'].ConstructionLine(point1=(-81.25, 81.25)
+    , point2=(0.0, 81.25))
+mdb.models['1-45'].sketches['__edit__'].HorizontalConstraint(addUndoState=False
+    , entity=mdb.models['1-45'].sketches['__edit__'].geometry[167])
+mdb.models['1-45'].sketches['__edit__'].CoincidentConstraint(addUndoState=False
+    , entity1=mdb.models['1-45'].sketches['__edit__'].vertices[150], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[167])
+del mdb.models['1-45'].sketches['__edit__']
+del mdb.models['1-45'].parts['Plate'].features['Partition face-1']
+mdb.models['1-45'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['1-45'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['1-45'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-45'].sketches['__edit__'], 
+    upToFeature=mdb.models['1-45'].parts['Plate'].features['Shell planar-1'])
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].constraints[353], ))
+mdb.models['1-45'].sketches['__edit__'].DistanceDimension(entity1=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[4], textPoint=(
+    -143.467681884766, 52.3667449951172), value=75.0)
+mdb.models['1-45'].sketches['__edit__'].undo()
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[3])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[4])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[5])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[2])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[3])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[2])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[3])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[4])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[0])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[2])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[5])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[2])
+mdb.models['1-45'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[3])
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].geometry[103], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[116], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[117], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[118], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[119], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[120], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[121], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[122], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[123], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[124], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[125], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[126], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[127], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[128], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[129], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[130], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[131], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[132], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[137], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[150], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[151], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[152], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[153], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[154], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[155], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[156], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[157], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[158], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[159], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[160], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[161], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[162], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[163], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[164], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[165], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[166], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[133], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[134], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[135], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[136], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[137], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[138], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[139], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[140], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[141], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[142], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[143], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[144], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[145], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[146], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[147], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[148], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[149], 
+    mdb.models['1-45'].sketches['__edit__'].geometry[154], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[111], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[137], 
+    mdb.models['1-45'].sketches['__edit__'].vertices[124], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[43], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[44], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[45], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[46], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[47], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[48], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[55], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[56], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[57], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[58], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[59], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[60], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[49], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[50], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[51], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[52], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[53], 
+    mdb.models['1-45'].sketches['__edit__'].dimensions[54], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[414], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[415], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[418], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[421], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[424], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[427], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[428], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[429], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[430], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[431], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[432], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[433], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[434], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[435], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[452], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[453], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[454], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[455], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[456], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[532], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[533], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[536], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[539], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[542], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[545], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[546], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[547], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[548], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[549], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[550], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[551], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[552], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[553], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[570], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[571], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[572], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[573], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[574], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[473], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[474], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[477], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[480], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[483], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[486], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[487], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[488], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[489], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[490], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[491], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[492], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[493], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[494], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[511], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[512], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[513], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[514], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[515]))
+mdb.models['1-45'].sketches['__edit__'].DistanceDimension(entity1=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[4], textPoint=(
+    -126.386177062988, 53.7649841308594), value=75.0)
+mdb.models['1-45'].sketches['__edit__'].DistanceDimension(entity1=
+    mdb.models['1-45'].sketches['__edit__'].vertices[98], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[5], textPoint=(
+    -47.550235748291, 128.284942626953), value=75.0)
+mdb.models['1-45'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-45'].sketches['__edit__'].constraints[20], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[21], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[591], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[593], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[597], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[18], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[594], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[598], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[19], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[22], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[595], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[596], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[592], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[20], 
+    mdb.models['1-45'].sketches['__edit__'].constraints[591]))
+mdb.models['1-45'].sketches['__edit__'].HorizontalConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[3])
+mdb.models['1-45'].sketches['__edit__'].HorizontalConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[5])
+mdb.models['1-45'].sketches['__edit__'].VerticalConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[4])
+mdb.models['1-45'].sketches['__edit__'].VerticalConstraint(entity=
+    mdb.models['1-45'].sketches['__edit__'].geometry[2])
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[4], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[5])
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[5], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[2])
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[2], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[3])
+mdb.models['1-45'].sketches['__edit__'].PerpendicularConstraint(entity1=
+    mdb.models['1-45'].sketches['__edit__'].geometry[3], entity2=
+    mdb.models['1-45'].sketches['__edit__'].geometry[4])
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((150.0, 
+    -150.0), (150.0, -150.0), (146.25, -146.25), (143.75, -143.75), (140.0, 
+    -141.25), (137.5, -138.75), (133.75, -136.25), (131.25, -135.0), (127.5, 
+    -132.5), (125.0, -130.0), (122.5, -128.75), (120.0, -126.25), (117.5, 
+    -125.0), (115.0, -122.5), (112.5, -121.25), (108.75, -120.0), (105.0, 
+    -117.5), (101.25, -113.75), (96.25, -111.25), (92.5, -107.5), (88.75, 
+    -105.0), (85.0, -102.5), (81.25, -100.0), (78.75, -97.5), (75.0, -93.75), (
+    71.25, -91.25), (68.75, -90.0), (66.25, -87.5), (63.75, -85.0), (61.25, 
+    -82.5), (58.75, -80.0), (57.5, -77.5), (55.0, -76.25), (52.5, -73.75), (
+    50.0, -71.25), (47.5, -68.75), (45.0, -66.25), (41.25, -63.75), (40.0, 
+    -61.25), (37.5, -58.75), (36.25, -56.25), (33.75, -52.5), (32.5, -50.0), (
+    30.0, -46.25), (27.5, -42.5), (26.25, -40.0), (23.75, -36.25), (22.5, 
+    -33.75), (21.25, -31.25), (20.0, -28.75), (18.75, -25.0), (17.5, -22.5), (
+    16.25, -20.0), (15.0, -17.5), (12.5, -13.75), (11.25, -11.25), (8.75, 
+    -8.75), (6.25, -7.5), (5.0, -5.0), (2.5, -3.75), (0.0, -1.25), (0.0, 0.0)))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((0.0, 0.0), (
+    0.0, 0.0), (-2.5, 3.75), (-5.0, 6.25), (-8.75, 10.0), (-11.25, 12.5), (
+    -13.75, 13.75), (-15.0, 13.75), (-17.5, 15.0), (-18.75, 16.25), (-21.25, 
+    17.5), (-22.5, 18.75), (-23.75, 20.0), (-26.25, 21.25), (-28.75, 22.5), (
+    -30.0, 23.75), (-32.5, 25.0), (-33.75, 25.0), (-35.0, 26.25), (-37.5, 
+    27.5), (-37.5, 27.5)))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((-37.5, 27.5), 
+    (-37.5, 27.5), (-36.25, 27.5), (-33.75, 26.25), (-31.25, 25.0), (-30.0, 
+    25.0), (-27.5, 23.75), (-26.25, 23.75), (-25.0, 22.5), (-23.75, 21.25), (
+    -21.25, 20.0), (-20.0, 18.75), (-17.5, 18.75), (-16.25, 17.5), (-16.25, 
+    16.25), (-15.0, 15.0), (-15.0, 12.5), (-13.75, 12.5)))
+mdb.models['1-45'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-45'].sketches['__edit__'].vertices[1], points=((-13.75, 
+    12.5), (-13.75, 12.5), (-10.0, 10.0), (-8.75, 8.75), (-6.25, 7.5), (-3.75, 
+    6.25), (-2.5, 5.0), (-1.25, 2.5), (-1.25, 0.0), (0.0, 0.0)))
+mdb.models['1-45'].parts['Plate'].features['Shell planar-1'].setValues(sketch=
+    mdb.models['1-45'].sketches['__edit__'])
+del mdb.models['1-45'].sketches['__edit__']
+mdb.models['1-45'].parts['Plate'].regenerate()
+mdb.models['1-45'].ConstrainedSketch(gridSpacing=21.21, name='__profile__', 
+    sheetSize=848.52, transform=
+    mdb.models['1-45'].parts['Plate'].MakeSketchTransform(
+    sketchPlane=mdb.models['1-45'].parts['Plate'].faces[0], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['1-45'].parts['Plate'].edges[11], 
+    sketchOrientation=RIGHT, origin=(-75.0, 75.0, 0.0)))
+mdb.models['1-45'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-45'].sketches['__profile__'])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(-21.2132034355964, 
+    21.2132034355964), point2=(21.2132034355964, 21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[14])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(21.2132034355964, 
+    21.2132034355964), point2=(21.2132034355964, -21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[15])
+mdb.models['1-45'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-45'].sketches['__profile__'].geometry[14], entity2=
+    mdb.models['1-45'].sketches['__profile__'].geometry[15])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(21.2132034355964, 
+    -21.2132034355964), point2=(-21.2132034355964, -21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[16])
+mdb.models['1-45'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-45'].sketches['__profile__'].geometry[15], entity2=
+    mdb.models['1-45'].sketches['__profile__'].geometry[16])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(-21.2132034355964, 
+    -21.2132034355964), point2=(-21.2132034355964, 21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[17])
+mdb.models['1-45'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-45'].sketches['__profile__'].geometry[16], entity2=
+    mdb.models['1-45'].sketches['__profile__'].geometry[17])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(-21.2132034355964, 
+    21.2132034355964), point2=(-21.2132034355964, 75.0))
+mdb.models['1-45'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[18])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[12], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[10])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(21.2132034355964, 
+    21.2132034355964), point2=(21.2132034355964, 75.0))
+mdb.models['1-45'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[19])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[13], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[10])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(21.2132034355964, 
+    21.2132034355964), point2=(75.0, 21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[20])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[14], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[13])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(21.2132034355964, 
+    -21.2132034355964), point2=(75.0, -21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[21])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[15], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[13])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(21.2132034355964, 
+    -21.2132034355964), point2=(21.2132034355964, -75.0))
+mdb.models['1-45'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[22])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[16], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[12])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(-21.2132034355964, 
+    -21.2132034355964), point2=(-21.2132034355964, -75.0))
+mdb.models['1-45'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[23])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[17], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[12])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(-21.2132034355964, 
+    -21.2132034355964), point2=(-75.0, -21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[24])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[18], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[11])
+mdb.models['1-45'].sketches['__profile__'].Line(point1=(-21.2132034355964, 
+    21.2132034355964), point2=(-75.0, 21.2132034355964))
+mdb.models['1-45'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['1-45'].sketches['__profile__'].geometry[25])
+mdb.models['1-45'].sketches['__profile__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['1-45'].sketches['__profile__'].vertices[19], 
+    entity2=mdb.models['1-45'].sketches['__profile__'].geometry[11])
+mdb.models['1-45'].parts['Plate'].PartitionFaceBySketch(faces=
+    mdb.models['1-45'].parts['Plate'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    sketch=mdb.models['1-45'].sketches['__profile__'], sketchUpEdge=
+    mdb.models['1-45'].parts['Plate'].edges[11])
+del mdb.models['1-45'].sketches['__profile__']
+mdb.models['1-45'].rootAssembly.regenerate()
+mdb.models['1-45'].parts['Plate'].Set(edges=
+    mdb.models['1-45'].parts['Plate'].edges.getSequenceFromMask(('[#8090c20 ]', 
+    ), ), name='ShellBoundary')
+mdb.models['1-45'].parts['Plate'].Set(edges=
+    mdb.models['1-45'].parts['Plate'].edges.getSequenceFromMask((
+    '[#c4000000 ]', ), ), name='symm')
+mdb.models['1-45'].parts['Plate'].Set(edges=
+    mdb.models['1-45'].parts['Plate'].edges.getSequenceFromMask((
+    '[#20120000 ]', ), ), name='symm_down')
+mdb.models['1-45'].rootAssembly.regenerate()
+mdb.models['1-45'].YsymmBC(createStepName='Load', localCsys=None, name='down', 
+    region=
+    mdb.models['1-45'].rootAssembly.instances['Plate-1'].sets['symm_down'])
+mdb.models['1-45'].XsymmBC(createStepName='Load', localCsys=None, name='right', 
+    region=mdb.models['1-45'].rootAssembly.instances['Plate-1'].sets['symm'])
+mdb.models['1-45'].parts['Plate'].setMeshControls(regions=
+    mdb.models['1-45'].parts['Plate'].faces.getSequenceFromMask(('[#eea ]', ), 
+    ), technique=STRUCTURED)
+mdb.models['1-45'].parts['Plate'].setMeshControls(algorithm=MEDIAL_AXIS, 
+    regions=mdb.models['1-45'].parts['Plate'].faces.getSequenceFromMask((
+    '[#115 ]', ), ))
+mdb.models['1-45'].parts['Plate'].generateMesh()
+mdb.models['1-45'].parts['Plate'].deleteMesh(regions=
+    mdb.models['1-45'].parts['Plate'].faces.getSequenceFromMask(('[#115 ]', ), 
+    ))
+mdb.models['1-45'].parts['Plate'].setMeshControls(algorithm=ADVANCING_FRONT, 
+    regions=mdb.models['1-45'].parts['Plate'].faces.getSequenceFromMask((
+    '[#115 ]', ), ))
+mdb.models['1-45'].parts['Plate'].generateMesh()
+# Save by jorge on 2023_06_20-11.12.05; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-45'].rootAssembly.regenerate()
+mdb.Model(name='1-HV-FSI', objectToCopy=mdb.models['1-HV'])
+del mdb.models['1-HV-FSI'].parts['Plate'].features['Partition face-1']
+mdb.models['1-HV-FSI'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['1-HV-FSI'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['1-HV-FSI'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-HV-FSI'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['1-HV-FSI'].parts['Plate'].features['Shell planar-1'])
+mdb.models['1-HV-FSI'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[21], points=((0.0, 
+    0.0), (0.0, 0.0), (-0.0208787024021149, 0.0), (-0.0410909354686737, 0.0), (
+    -0.0575133860111237, 0.0147418510168791), (-0.0701459944248199, 
+    0.0185274612158537), (-0.0815154016017914, 0.0223130118101835), (
+    -0.0903582274913788, 0.0273604523390532), (-0.0979378521442413, 
+    0.0324078351259232), (-0.104254156351089, 0.036193385720253)))
+mdb.models['1-HV-FSI'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[21], points=((0.0, 
+    0.0), (0.0, 0.0), (-0.0132991373538971, 0.0), (-0.0221419632434845, 
+    0.0160037409514189), (-0.0284582674503326, 0.0223130118101835), (
+    -0.0347746312618256, 0.031146002933383), (-0.0398276746273041, 
+    0.0399789959192276), (-0.043617457151413, 0.0488119870424271)))
+mdb.models['1-HV-FSI'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[74], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[73]))
+mdb.models['1-HV-FSI'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[21], points=((0.0, 
+    0.0), (0.0, 0.0), (0.0, 0.0), (-0.0276618599891663, 0.0290808994323015), (
+    -0.0417918562889099, 0.0384904444217682), (-0.055921733379364, 
+    0.0478997528553009), (-0.067696750164032, 0.0596616566181183), (
+    -0.0841816067695618, 0.0737757980823517), (-0.100666582584381, 
+    0.083185225725174), (-0.117151439189911, 0.0949471294879913), (
+    -0.131281435489655, 0.109061270952225), (-0.147766292095184, 
+    0.120823055505753), (-0.159541308879852, 0.13258484005928), (
+    -0.171316206455231, 0.144346743822098), (-0.185446202754974, 
+    0.160813242197037), (-0.194866120815277, 0.17492738366127), (
+    -0.206641018390656, 0.189041525125504), (-0.216061055660248, 
+    0.205508142709732), (-0.227835953235626, 0.221974760293961), (
+    -0.244320809841156, 0.231384068727493), (-0.267870724201202, 
+    0.233736544847488), (-0.291420638561249, 0.236088901758194), (
+    -0.314970552921295, 0.236088901758194), (-0.338520348072052, 
+    0.236088901758194), (-0.362070262432098, 0.236088901758194), (
+    -0.380910217761993, 0.243145972490311), (-0.402105152606964, 
+    0.245498210191727), (-0.425654947757721, 0.250203043222427), (
+    -0.451559841632843, 0.252555400133133), (-0.479819715023041, 
+    0.257260113954544), (-0.51278954744339, 0.26431730389595), (
+    -0.538694441318512, 0.266669541597366), (-0.557534396648407, 
+    0.271374374628067), (-0.55046933889389, 0.278431445360184), (
+    -0.538694441318512, 0.290193229913712), (-0.526919543743134, 
+    0.306659728288651), (-0.519854485988617, 0.32783105969429), (
+    -0.517499506473541, 0.351354628801346), (-0.519854485988617, 
+    0.374878317117691), (-0.522209465503693, 0.396049529314041), (
+    -0.529274523258209, 0.414868384599686), (-0.533984482288361, 
+    0.43368735909462), (-0.543404400348663, 0.452506214380264), (
+    -0.555179297924042, 0.471325069665909), (-0.569309294223785, 
+    0.485439330339432), (-0.58343917131424, 0.49720111489296), (
+    -0.602279126644135, 0.506610572338104), (-0.625829041004181, 
+    0.516020119190216), (-0.647023916244507, 0.523077189922333), (
+    -0.670573770999908, 0.527781784534454), (-0.694123685359955, 
+    0.530134260654449), (-0.715318620204926, 0.534838974475861), (
+    -0.736513555049896, 0.537191331386566), (-0.760063350200653, 
+    0.539543688297272), (-0.781258285045624, 0.541896045207977), (
+    -0.804808080196381, 0.544248402118683), (-0.783613264560699, 
+    0.541896045207977), (-0.760063350200653, 0.541896045207977), (
+    -0.736513555049896, 0.539543688297272), (-0.654088854789734, 
+    0.537191331386566), (-0.552824318408966, 0.534838974475861), (
+    -0.432720005512238, 0.532486617565155), (-0.326745450496674, 
+    0.527781784534454), (-0.246675908565521, 0.523077189922333), (
+    -0.199576079845428, 0.518372476100922), (-0.183091104030609, 
+    0.516020119190216), (-0.208995997905731, 0.511315405368805), (
+    -0.244320809841156, 0.504258334636688), (-0.263160765171051, 
+    0.494848757982254), (-0.282000720500946, 0.490144044160843), (
+    -0.293775618076324, 0.487791687250137)))
+mdb.models['1-HV-FSI'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[21], points=((
+    -0.293775618076324, 0.487791687250137), (-0.293775618076324, 
+    0.487791687250137), (-0.415661484003067, 0.613504886627197), (
+    -0.55735170841217, 0.729304313659668), (-0.686161637306213, 
+    0.806503772735596), (-0.776328682899475, 0.870836734771729), (
+    -0.853613495826721, 0.935169696807861), (-0.943780541419983, 
+    0.999502658843994), (-1.04682791233063, 1.06383562088013), (-1.25, 1.25), (
+    -1.25, 1.25), (-1.40749514102936, 1.25), (-1.57494699954987, 1.25), (
+    -1.79392397403717, 1.47556686401367), (-2.00001883506775, 
+    1.57849931716919), (-2.24475741386414, 1.69429874420166), (-2.5, 
+    1.78436470031738), (-2.5, 1.84869766235352), (-2.65694785118103, 
+    1.88729763031006), (-2.74711441993713, 1.95163059234619), (
+    -2.86304259300232, 2.00309658050537), (-2.86304259300232, 
+    2.00309658050537), (-2.96609044075012, 2.10602951049805), (
+    -3.08201909065247, 2.20896196365356), (-3.19794774055481, 
+    2.33762836456299), (-3.33963799476624, 2.5), (-3.49420952796936, 2.5), (
+    -3.59725737571716, 2.72362613677979), (-3.75, 2.78795909881592), (-3.75, 
+    2.87802505493164), (-3.75, 2.96809148788452), (-3.97080492973328, 
+    3.03242444992065), (-4.0609712600708, 3.09675693511963), (
+    -4.12537622451782, 3.12249088287354)))
+mdb.models['1-HV-FSI'].sketches['__edit__'].DistanceDimension(entity1=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[21], entity2=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[4], textPoint=(
+    -133.435668945312, -10.4184494018555), value=75.0)
+mdb.models['1-HV-FSI'].sketches['__edit__'].undo()
+mdb.models['1-HV-FSI'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    -183.041625976562, 78.6614074707031), value=150.0, vertex1=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[2], vertex2=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[3])
+mdb.models['1-HV-FSI'].sketches['__edit__'].undo()
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[3])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[4])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[5])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[0])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[2])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[5])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[1])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[2])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[3])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[2])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[3])
+mdb.models['1-HV-FSI'].sketches['__edit__'].FixedConstraint(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[4])
+mdb.models['1-HV-FSI'].sketches['__edit__'].DistanceDimension(entity1=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[23], entity2=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[4], textPoint=(
+    -120.942031860352, -37.413215637207), value=75.0)
+mdb.models['1-HV-FSI'].sketches['__edit__'].DistanceDimension(entity1=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[21], entity2=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].geometry[5], textPoint=(
+    -62.9265747070312, 133.349716186523), value=75.0)
+mdb.models['1-HV-FSI'].sketches['__edit__'].delete(objectList=(
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[130], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[129], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[128], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[127], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[126], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[124], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[125], 
+    mdb.models['1-HV-FSI'].sketches['__edit__'].constraints[131]))
+mdb.models['1-HV-FSI'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[1], points=((150.0, 
+    -150.0), (150.0, -150.0), (143.75, -147.5), (138.75, -143.75), (135.0, 
+    -142.5), (131.25, -141.25), (127.5, -138.75), (122.5, -136.25), (120.0, 
+    -133.75), (116.25, -131.25), (112.5, -130.0), (108.75, -127.5), (106.25, 
+    -125.0), (101.25, -122.5), (97.5, -120.0), (93.75, -116.25), (90.0, 
+    -112.5), (85.0, -108.75), (80.0, -105.0), (75.0, -101.25), (70.0, -97.5), (
+    67.5, -95.0), (62.5, -90.0), (58.75, -86.25), (55.0, -82.5), (52.5, 
+    -78.75), (48.75, -73.75), (46.25, -70.0), (42.5, -66.25), (41.25, -63.75), 
+    (37.5, -58.75), (35.0, -56.25), (32.5, -52.5), (30.0, -48.75), (27.5, 
+    -45.0), (25.0, -41.25), (21.25, -38.75), (18.75, -35.0), (16.25, -31.25), (
+    13.75, -28.75), (11.25, -25.0), (8.75, -22.5), (7.5, -18.75), (5.0, -15.0), 
+    (3.75, -11.25), (1.25, -6.25), (1.25, -3.75)))
+mdb.models['1-HV-FSI'].sketches['__edit__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__edit__'].vertices[1], points=((1.25, 
+    -3.75), (1.25, -3.75), (0.0, -2.5), (0.0, -2.5), (-1.25, -1.25), (0.0, 
+    0.0), (0.0, 0.0)))
+mdb.models['1-HV-FSI'].parts['Plate'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['1-HV-FSI'].sketches['__edit__'])
+del mdb.models['1-HV-FSI'].sketches['__edit__']
+mdb.models['1-HV-FSI'].parts['Plate'].regenerate()
+mdb.models['1-HV-FSI'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['1-HV-FSI'].parts['Plate'].features['Shell planar-1'].sketch)
+mdb.models['1-HV-FSI'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-HV-FSI'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['1-HV-FSI'].parts['Plate'].features['Shell planar-1'])
+del mdb.models['1-HV-FSI'].sketches['__edit__']
+mdb.models['1-HV-FSI'].ConstrainedSketch(gridSpacing=10.6, name='__profile__', 
+    sheetSize=424.26, transform=
+    mdb.models['1-HV-FSI'].parts['Plate'].MakeSketchTransform(
+    sketchPlane=mdb.models['1-HV-FSI'].parts['Plate'].faces[0], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['1-HV-FSI'].parts['Plate'].edges[11], 
+    sketchOrientation=RIGHT, origin=(-75.000013, 75.0, 0.0)))
+mdb.models['1-HV-FSI'].parts['Plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['1-HV-FSI'].sketches['__profile__'])
+mdb.models['1-HV-FSI'].sketches['__profile__'].Line(point1=(0.050013, 30.0), 
+    point2=(0.050013, 75.0))
+mdb.models['1-HV-FSI'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[14])
+mdb.models['1-HV-FSI'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[12], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[10])
+mdb.models['1-HV-FSI'].sketches['__profile__'].Line(point1=(30.050013, 0.0), 
+    point2=(75.0000130000495, 0.0))
+mdb.models['1-HV-FSI'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[15])
+mdb.models['1-HV-FSI'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[13], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[13])
+mdb.models['1-HV-FSI'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[11], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[8], midpoint=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[13])
+mdb.models['1-HV-FSI'].sketches['__profile__'].Line(point1=(0.050013, -30.0), 
+    point2=(1.3e-05, -75.0))
+mdb.models['1-HV-FSI'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[14], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[12])
+mdb.models['1-HV-FSI'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[10], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[11], midpoint=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[14])
+mdb.models['1-HV-FSI'].sketches['__profile__'].Line(point1=(-29.949987, 0.0), 
+    point2=(-74.9999869999505, 0.0))
+mdb.models['1-HV-FSI'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[17])
+mdb.models['1-HV-FSI'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[15], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[11])
+mdb.models['1-HV-FSI'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[9], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[10], midpoint=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[15])
+mdb.models['1-HV-FSI'].sketches['__profile__'].delete(objectList=(
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[14], ))
+mdb.models['1-HV-FSI'].sketches['__profile__'].Line(point1=(0.050013, 30.0), 
+    point2=(0.050013, 75.0))
+mdb.models['1-HV-FSI'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[18])
+mdb.models['1-HV-FSI'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[16], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[10])
+mdb.models['1-HV-FSI'].sketches['__profile__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[16], points=((
+    0.050013, 75.0), (0.050013, 75.0), (0.0, 74.9950561523438), (0.0, 
+    75.0031433105469)))
+mdb.models['1-HV-FSI'].sketches['__profile__'].dragEntity(entity=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[16], points=((
+    0.050013, 75.0), (0.050013, 75.0), (0.0, 74.9977569580078), (0.0, 
+    74.9950561523438)))
+mdb.models['1-HV-FSI'].sketches['__profile__'].delete(objectList=(
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[18], ))
+mdb.models['1-HV-FSI'].sketches['__profile__'].Line(point1=(1.3e-05, 75.0), 
+    point2=(0.050013, 30.0))
+mdb.models['1-HV-FSI'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[17], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].geometry[10])
+mdb.models['1-HV-FSI'].sketches['__profile__'].EqualDistanceConstraint(
+    addUndoState=False, entity1=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[8], entity2=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[9], midpoint=
+    mdb.models['1-HV-FSI'].sketches['__profile__'].vertices[17])
+mdb.models['1-HV-FSI'].parts['Plate'].PartitionFaceBySketch(faces=
+    mdb.models['1-HV-FSI'].parts['Plate'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), sketch=mdb.models['1-HV-FSI'].sketches['__profile__'], sketchUpEdge=
+    mdb.models['1-HV-FSI'].parts['Plate'].edges[11])
+del mdb.models['1-HV-FSI'].sketches['__profile__']
+mdb.models['1-HV-FSI'].parts['Plate'].Set(edges=
+    mdb.models['1-HV-FSI'].parts['Plate'].edges.getSequenceFromMask((
+    '[#1c004 ]', ), ), name='Fixed')
+mdb.models['1-HV-FSI'].parts['Plate'].Set(edges=
+    mdb.models['1-HV-FSI'].parts['Plate'].edges.getSequenceFromMask((
+    '[#20200 ]', ), ), name='Down')
+mdb.models['1-HV-FSI'].parts['Plate'].Set(edges=
+    mdb.models['1-HV-FSI'].parts['Plate'].edges.getSequenceFromMask(('[#402 ]', 
+    ), ), name='Right')
+mdb.models['1-HV-FSI'].rootAssembly.regenerate()
+mdb.models['1-HV-FSI'].steps['Load'].setValues(improvedDtMethod=ON, timePeriod=
+    0.0015)
+mdb.models['1-HV-FSI'].timePoints['TimePoints-1'].setValues(points=((0.0, 
+    0.0001, 0.0001), (0.0001, 0.0015, 0.0001)))
+mdb.models['1-HV-FSI'].boundaryConditions['FixedEnd'].setValues(region=
+    mdb.models['1-HV-FSI'].rootAssembly.instances['Plate-1'].sets['Fixed'])
+mdb.models['1-HV-FSI'].YsymmBC(createStepName='Load', localCsys=None, name=
+    'down', region=
+    mdb.models['1-HV-FSI'].rootAssembly.instances['Plate-1'].sets['Down'])
+mdb.models['1-HV-FSI'].XsymmBC(createStepName='Load', localCsys=None, name=
+    'right', region=
+    mdb.models['1-HV-FSI'].rootAssembly.instances['Plate-1'].sets['Right'])
+mdb.models['1-HV-FSI'].parts['Plate'].setMeshControls(regions=
+    mdb.models['1-HV-FSI'].parts['Plate'].faces.getSequenceFromMask(('[#f ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['1-HV-FSI'].parts['Plate'].generateMesh()
+# Save by jorge on 2023_06_20-11.22.11; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['1-HV-FSI'].parts['Plate'].deleteMesh()
+mdb.models['1-HV-FSI'].parts['Plate'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.5)
+mdb.models['1-HV-FSI'].parts['Plate'].generateMesh()
+mdb.models.changeKey(fromName='1-HV-FSI', toName='1-HV-SYM')
+mdb.models.changeKey(fromName='1-45', toName='1-45_SYM')
+mdb.models.changeKey(fromName='1-HV-SYM', toName='1-HV_SYM')
+mdb.models['1-45_SYM'].timePoints['TimePoints-1'].setValues(points=((0.0, 
+    0.0001, 0.0001), (0.0001, 0.0015, 0.0001)))
+# Save by jorge on 2023_06_20-11.24.36; build 2022 2021_09_15-19.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.Job(name='1-45_SYM', objectToCopy=mdb.jobs['4-45_FSI'])
+mdb.jobs['1-45_SYM'].setValues(model='1-45_SYM')
+mdb.Job(name='1-HV_SYM', objectToCopy=mdb.jobs['1-45_SYM'])
+mdb.jobs['1-HV_SYM'].setValues(model='1-HV_SYM')
+mdb.models['1-HV_SYM'].rootAssembly.regenerate()
+# Save by jorge on 2023_06_20-11.25.58; build 2022 2021_09_15-19.57.30 176069
+# Save by jorge on 2023_06_20-11.51.35; build 2022 2021_09_15-19.57.30 176069
